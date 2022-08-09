@@ -25,7 +25,7 @@ const Form1 = () => {
     " El Oro",
   ];
   const [agenciasSierra, setAgenciasSierra] = useState([]);
-  const [test, setTest] = useState([]);
+  const [agenciasCosta, setAgenciasCosta] = useState([]);
   const handleChange = (e, i, setfunction, array) => {
     console.log("handleChange");
     const temp = [...array];
@@ -44,23 +44,18 @@ const Form1 = () => {
     temp.splice(i, 1);
     setfunction(temp);
   };
-  const handleAdd = () => {
+  const handleAdd = (agencia, setAgencia, listProvincias) => {
     console.log("handleAdd");
-    for (let index = 0; index < provinciasSierra.length; index++) {
-      const provTemp = provinciasSierra[index];
-      if (
-        agenciasSierra.find((item) => item.provincia == provTemp) === undefined
-      ) {
-        setAgenciasSierra(
-          agenciasSierra.concat({ provincia: provTemp, cant: 0 })
-        ); //la primera provincia disponible se devuelve
+    for (let index = 0; index < listProvincias.length; index++) {
+      const provTemp = listProvincias[index];
+      if (agencia.find((item) => item.provincia == provTemp) === undefined) {
+        setAgencia(agencia.concat({ provincia: provTemp, cant: 0 })); //la primera provincia disponible se devuelve
         break;
       }
     }
-    // setAgenciasSierra(agenciasSierra.concat(newItem));
   };
   useEffect(() => console.log(agenciasSierra), [agenciasSierra]);
-  useEffect(() => console.log(test), [test]);
+  useEffect(() => console.log(agenciasCosta), [agenciasCosta]);
 
   return (
     <div className="">
@@ -157,10 +152,16 @@ const Form1 = () => {
             <h1 className="w-full text-center ">
               Número de agencias por ubicación
             </h1>
-            <ul className="flex flex-col text-center gap-2 text-slate-300">
+            <ul className="grid grid-cols-2 text-center gap-2 text-slate-300">
               <li>
                 <h1
-                  onClick={() => handleAdd()}
+                  onClick={() =>
+                    handleAdd(
+                      agenciasSierra,
+                      setAgenciasSierra,
+                      provinciasSierra
+                    )
+                  }
                   className="bg-slate-600 cursor-pointer hover:scale-105 duration-150 ease-in-out"
                 >
                   Sierra
@@ -226,9 +227,73 @@ const Form1 = () => {
                 </div>
               </li>
               <li>
-                <h1 className="bg-slate-600 cursor-pointer hover:scale-105 duration-150 ease-in-out">
+                <h1
+                  onClick={() =>
+                    handleAdd(agenciasCosta, setAgenciasCosta, provinciasCosta)
+                  }
+                  className="bg-slate-600 cursor-pointer hover:scale-105 duration-150 ease-in-out"
+                >
                   Costa
                 </h1>
+                <div className="text-center gap-2 text-slate-300">
+                  <ul>
+                    {agenciasCosta &&
+                      agenciasCosta.map((value, i) => (
+                        <li key={i} className="flex flex-row items-center">
+                          <select
+                            value={value.provincia}
+                            className="bg-transparent outline-none cursor-pointer w-[140px]"
+                            onChange={(e) =>
+                              handleChange(
+                                e,
+                                i,
+                                setAgenciasCosta,
+                                agenciasCosta
+                              )
+                            }
+                          >
+                            <option className="bg-slate-700" key={i}>
+                              {value.provincia}
+                            </option>
+                            {provinciasCosta.map((prov, i) => {
+                              if (
+                                agenciasCosta.find(
+                                  (item) => item.provincia == prov
+                                ) === undefined
+                              )
+                                return (
+                                  <option className="bg-slate-700" key={i}>
+                                    {prov}
+                                  </option>
+                                );
+                            })}
+                          </select>
+                          <input
+                            className="bg-slate-900 w-9 text-center outline-none"
+                            min={1}
+                            max={100}
+                            value={value.cant}
+                            type="number"
+                            onChange={(e) =>
+                              handleChangeCant(
+                                e,
+                                i,
+                                setAgenciasCosta,
+                                agenciasCosta
+                              )
+                            }
+                          />
+                          <img
+                            className="h-4 cursor-pointer"
+                            src={deleteIcon}
+                            onClick={() =>
+                              handleDelete(i, setAgenciasCosta, agenciasCosta)
+                            }
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                </div>
               </li>
               <li>
                 <h1 className="bg-slate-600 cursor-pointer hover:scale-105 duration-150 ease-in-out">
@@ -244,9 +309,6 @@ const Form1 = () => {
           </div>
         </form>
       </section>
-      <button onClick={() => setTest(test.concat({ provincia: "test" }))}>
-        test
-      </button>
     </div>
   );
 };
