@@ -26,6 +26,12 @@ const Navbar = () => {
         >
           Formulario KYC
         </li>
+        <li
+          onClick={() => handleClick("test")}
+          className="cursor-pointer bg-slate-800 px-5 rounded-md w-1/3"
+        >
+          test
+        </li>
       </ul>
     </div>
   );

@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import deleteIcon from "../assets/icons/close.png";
-import addIcon from "../assets/icons/plus.png";
+import React, { useState, useEffect } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
-import { estilosCalendario } from "../utils/constants";
+import deleteIcon from "../../assets/icons/close.png";
+import addIcon from "../../assets/icons/plus.png";
+import { estilosCalendario } from "../../utils/constants";
 
-const Form2 = () => {
+const Form2 = ({ callback }) => {
   const [repLegales, setRepLegales] = useState([
     {
       CI: "",
@@ -27,6 +26,12 @@ const Form2 = () => {
       fechaNacimiento: new Date(),
     },
   ]);
+  const handleSave = () => {
+    callback({
+      repLegales: repLegales,
+      accionistas: accionistas,
+    });
+  };
   const handleChange = (value, i, setfunction, array, key) => {
     console.log("handleChange");
     const temp = [...array];
@@ -55,8 +60,8 @@ const Form2 = () => {
         </h1>
         <form className="flex flex-col gap-1">
           <div className="flex flex-col justify-center text-slate-300">
-            <ul className="grid grid-cols-1 text-center gap-2 text-slate-300">
-              <h1 className="w-full text-center">
+            <ul className="flex flex-col text-center gap-2 text-slate-300">
+              <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
                 Datos de Representantes Legales
               </h1>
               <li>
@@ -218,7 +223,7 @@ const Form2 = () => {
               </li>
               <li className="flex justify-center">
                 <section className="flex flex-col w-5/6 text-left gap-2">
-                  <h1 className="italic text-xl text-center">
+                  <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
                     Datos de Accionistas
                   </h1>
                   <p>
@@ -240,8 +245,10 @@ const Form2 = () => {
                   </p>
                 </section>
               </li>
-              <li>
-                <h1 className="w-full text-center">Datos de Accionistas</h1>
+              <li className="flex flex-col gap-5">
+                <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
+                  Datos de Accionistas
+                </h1>
                 <div className="text-center gap-2 text-slate-300">
                   <table className="w-full">
                     <thead className="w-full ">
@@ -390,7 +397,7 @@ const Form2 = () => {
                       },
                     ])
                   }
-                  className="flex flex-row justify-center mt-2"
+                  className="flex flex-row justify-center"
                 >
                   <div className="rounded-sm p-1 w-60 bg-slate-500 flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
                     <h1>Agregar Accionista</h1>
@@ -401,6 +408,20 @@ const Form2 = () => {
             </ul>
           </div>
         </form>
+        <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2">
+          <button
+            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            onClick={() => handleSave()}
+          >
+            Guardar esta Sección
+          </button>
+          <button
+            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            onClick={() => handleSave()}
+          >
+            Vista Previa
+          </button>
+        </div>
       </section>
     </div>
   );

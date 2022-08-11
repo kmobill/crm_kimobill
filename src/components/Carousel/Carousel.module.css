@@ -1,0 +1,83 @@
+.container{
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
+}
+.carousel {
+  width: 100%;
+}
+
+.slide {
+  display: none;
+  opacity: 0;
+  transition: 200ms opacity ease-in-out;
+  transition-delay: 200ms;
+}
+
+.slide > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.slide > section {
+  width: 100%;
+  height: 100%;
+}
+
+.slide[data-active] {
+  opacity: 1;
+  display: block;
+  transition-delay: 0ms;
+}
+
+.carouselButton {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0 0.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.carouselButton:hover,
+.carouselButton:focus {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.carouselButton:focus {
+  outline: 1px solid black;
+}
+
+.carouselButton.prev {
+  left: 1rem;
+}
+
+.carouselButton.next {
+  right: 1rem;
+}
+.infoButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  cursor: pointer;  
+  width: 100%;
+  padding: 1rem 0;
+  background: none;
+  color: white;
+}
+.infoButton{
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 40px;
+}
+.infoButtonActive{
+  color: rgba(255, 255, 255, 1);
+}

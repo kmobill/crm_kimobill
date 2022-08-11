@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import deleteIcon from "../assets/icons/close.png";
-import addIcon from "../assets/icons/plus.png";
-const Form1 = () => {
+import deleteIcon from "../../assets/icons/close.png";
+import addIcon from "../../assets/icons/plus.png";
+import Modal from "../Modal/Modal";
+const Form1 = ({ callback }) => {
   const provinciasSierra = [
     "Pichincha",
     "Carchi",
@@ -37,6 +38,51 @@ const Form1 = () => {
   const [agenciasCosta, setAgenciasCosta] = useState([]);
   const [agenciasOriente, setAgenciasOriente] = useState([]);
   const [agenciasInsular, setAgenciasInsultar] = useState([]);
+  const [info, setInfo] = useState({
+    razonSocial: "",
+    ruc: "",
+    grupoEconomico: "",
+    ciudadConstitucion: "",
+    direccionMatriz: "",
+    añosActividad: "",
+    numAgenciasLocales: "",
+    telf: "",
+    paginaWeb: "",
+    agenciasExterior: { ubicacion: "", cantidad: "" },
+  });
+  const [preview, setPreview] = useState({});
+  const handleChangeInputs = (key, value) => (info[`${key}`] = value);
+  const handleChangeInputs2 = (key, key2, value) =>
+    (info[`${key}`][`${key2}`] = value);
+  const handleSave = () => {
+    callback({
+      agencias: {
+        locales: {
+          sierra: agenciasSierra,
+          costa: agenciasCosta,
+          oriente: agenciasOriente,
+          insular: agenciasInsular,
+        },
+        internacionales: info.agenciasExterior,
+      },
+      informacionGeneral: info,
+    });
+  };
+  const handlePreview = () => {
+    setPreview({
+      agencias: {
+        locales: {
+          sierra: agenciasSierra,
+          costa: agenciasCosta,
+          oriente: agenciasOriente,
+          insular: agenciasInsular,
+        },
+        internacionales: info.agenciasExterior,
+      },
+      informacionGeneral: info,
+    });
+  };
+  useEffect(()=>console.log(preview),[preview])
   const handleChange = (e, i, setfunction, array) => {
     console.log("handleChange");
     const temp = [...array];
@@ -67,6 +113,7 @@ const Form1 = () => {
   };
   useEffect(() => console.log(agenciasSierra), [agenciasSierra]);
   useEffect(() => console.log(agenciasCosta), [agenciasCosta]);
+  useEffect(() => console.log(info), [info]);
 
   return (
     <div className="">
@@ -85,6 +132,9 @@ const Form1 = () => {
               name="razon_social"
               id="razon_social"
               required
+              onChange={(e) =>
+                handleChangeInputs("razonSocial", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -97,6 +147,7 @@ const Form1 = () => {
               name="RUC"
               id="RUC"
               required
+              onChange={(e) => handleChangeInputs("ruc", e.target.value)}
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -109,6 +160,9 @@ const Form1 = () => {
               name="grupo_económico"
               id="grupo_económico"
               required
+              onChange={(e) =>
+                handleChangeInputs("grupoEconomico", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -124,6 +178,9 @@ const Form1 = () => {
               name="ciudad_constitución"
               id="ciudad_constitución"
               required
+              onChange={(e) =>
+                handleChangeInputs("ciudadConstitucion", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -136,6 +193,9 @@ const Form1 = () => {
               name="dirección_matriz"
               id="dirección_matriz"
               required
+              onChange={(e) =>
+                handleChangeInputs("direccionMatriz", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -148,6 +208,9 @@ const Form1 = () => {
               name="años_actividad"
               id="años_actividad"
               required
+              onChange={(e) =>
+                handleChangeInputs("añosActividad", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -163,6 +226,9 @@ const Form1 = () => {
               name="número_agencias_locales"
               id="número_agencias_locales"
               required
+              onChange={(e) =>
+                handleChangeInputs("numAgenciasLocales", e.target.value)
+              }
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 items-center">
@@ -174,6 +240,7 @@ const Form1 = () => {
               type="tel"
               name="telefono"
               required
+              onChange={(e) => handleChangeInputs("telf", e.target.value)}
             />
           </div>
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 items-center">
@@ -185,15 +252,16 @@ const Form1 = () => {
               type="url"
               name="webpage"
               required
+              onChange={(e) => handleChangeInputs("paginaWeb", e.target.value)}
             />
           </div>
           <div className="">
             <section className="py-3 px-2">
               <div className="flex flex-col justify-center text-slate-300 gap-2">
-                <h1 className="w-full text-center ">
+                <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
                   Número de agencias por ubicación (click en la región)
                 </h1>
-                <ul className="grid grid-cols-2 text-center gap-2 text-slate-300">
+                <ul className="grid  grid-cols-1 sm:grid-cols-2 text-center gap-2 text-slate-300">
                   <li className="flex flex-col  items-center gap-2">
                     <h1
                       onClick={() =>
@@ -203,7 +271,7 @@ const Form1 = () => {
                           provinciasSierra
                         )
                       }
-                      className="w-full max-w-[270px] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Sierra
                     </h1>
@@ -213,7 +281,7 @@ const Form1 = () => {
                           agenciasSierra.map((value, i) => (
                             <li
                               key={i}
-                              className="flex flex-row items-center w-5/6"
+                              className="flex flex-row items-center w-[min(80%,280px)]"
                             >
                               <select
                                 value={value.provincia}
@@ -283,7 +351,7 @@ const Form1 = () => {
                           provinciasCosta
                         )
                       }
-                      className="w-full max-w-[270px] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Costa
                     </h1>
@@ -293,7 +361,7 @@ const Form1 = () => {
                           agenciasCosta.map((value, i) => (
                             <li
                               key={i}
-                              className="flex flex-row items-center w-5/6"
+                              className="flex flex-row items-center w-[min(80%,280px)]"
                             >
                               <select
                                 value={value.provincia}
@@ -363,7 +431,7 @@ const Form1 = () => {
                           provinciasOriente
                         )
                       }
-                      className="w-full max-w-[270px] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Oriente
                     </h1>
@@ -373,7 +441,7 @@ const Form1 = () => {
                           agenciasOriente.map((value, i) => (
                             <li
                               key={i}
-                              className="flex flex-row items-center w-5/6"
+                              className="flex flex-row items-center w-[min(80%,280px)]"
                             >
                               <select
                                 value={value.provincia}
@@ -443,7 +511,7 @@ const Form1 = () => {
                           provinciasInsular
                         )
                       }
-                      className="w-full max-w-[270px] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Insular
                     </h1>
@@ -453,7 +521,7 @@ const Form1 = () => {
                           agenciasInsular.map((value, i) => (
                             <li
                               key={i}
-                              className="flex flex-row items-center w-5/6"
+                              className="flex flex-row items-center w-[min(80%,280px)]"
                             >
                               <select
                                 value={value.provincia}
@@ -517,34 +585,72 @@ const Form1 = () => {
                 </ul>
               </div>
             </section>
-            <h1 className="text-center text-slate-300">
-              Agencias en el exterior:
-            </h1>
-            <div className="flex flex-row w-full justify-around gap-2bg-slate-600 text-slate-100 p-1">
-              <label className="" htmlFor="agencias_exteriores">
-                Ubicación Agencia:
-              </label>
-              <input
-                className=" outline-none max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
-                type="text"
-                name="agencias_exteriores"
-                required
-              />
-              <label className="" htmlFor="número_agencias_exterior">
-                Número de agencias:
-              </label>
-              <input
-                className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
-                min={0}
-                max={100}
-                // value={value.cant}
-                type="number"
-                name="número_agencias_exterior"
-                onChange={(e) => console.log(e.target.value)}
-              />
-            </div>
+            <section className="flex flex-col gap-4">
+              <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,270px)] text-center self-center">
+                Agencias en el exterior
+              </h1>
+              <div className="flex flex-col md:flex-row w-full md:justify-center gap-4 md:gap-10 items-center text-slate-100 p-1">
+                <div className="flex flex-col sm:flex-row gap-2 items-center">
+                  <label className="" htmlFor="agencias_exteriores">
+                    Ubicación Agencia:
+                  </label>
+                  <input
+                    className=" outline-none max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                    type="text"
+                    name="agencias_exteriores"
+                    required
+                    onChange={(e) =>
+                      handleChangeInputs2(
+                        "agenciasExterior",
+                        "ubicacion",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+                <div className="flex flex-row gap-2 items-center">
+                  <label className="" htmlFor="número_agencias_exterior">
+                    Número de agencias:
+                  </label>
+                  <input
+                    className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                    min={0}
+                    max={100}
+                    // value={value.cant}
+                    type="number"
+                    name="número_agencias_exterior"
+                    onChange={(e) =>
+                      handleChangeInputs2(
+                        "agenciasExterior",
+                        "cantidad",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </section>
           </div>
         </form>
+        <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2">
+          <button
+            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            onClick={() => handleSave()}
+          >
+            Guardar esta Sección
+          </button>
+          <Modal title="Vista Previa" parentFunction={handlePreview}>
+            {JSON.stringify(preview,null,'\t')}
+          </Modal>
+          
+          
+          {/* <button
+            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            onClick={() => handlePreview()}
+          >
+            Vista Previa
+          </button> */}
+        </div>
       </section>
     </div>
   );

@@ -1,9 +1,22 @@
 import React from "react";
-import Form1 from "../components/Form1";
 import Layout from "../components/Layout";
-import Carousel from "../components/Carousel";
-import Form2 from "../components/Form2";
+import Form1 from "../components/Forms/Form1";
+import Form2 from "../components/Forms/Form2";
+import Carousel from "../components/Carousel/Carousel";
+import { useState } from "react";
+import { useEffect } from "react";
+import Form3 from "../components/Forms/Form3";
+
 const FormKYC = () => {
+  const [dataForm1, setDataForm1] = useState([]);
+  const [dataForm2, setDataForm2] = useState([]);
+  const [dataForm3, setDataForm3] = useState([]);
+  const getDataForm1 = (data) => setDataForm1(data);
+  const getDataForm2 = (data) => setDataForm2(data);
+  const getDataForm3 = (data) => setDataForm3(data);
+  useEffect(() => console.log({ dataForm1 }), [dataForm1]);
+  useEffect(() => console.log({ dataForm2 }), [dataForm2]);
+  useEffect(() => console.log({ dataForm3 }), [dataForm3]);
   return (
     <Layout>
       <div className="flex flex-col justify-center bg-slate-800">
@@ -11,15 +24,17 @@ const FormKYC = () => {
           CUESTIONARIO DE DEBIDA DILIGENCIA PARA ENTIDADES FINANCIERAS
         </h1>
         <Carousel
-          items={[
-            <div className="w-3/5 m-auto">
-              <Form1 />
+          carouselItems={[
+            <div className="w-4/5 lg:w-[800px] m-auto">
+              <Form1 callback={getDataForm1} />
             </div>,
-            <div className="w-4/5 m-auto">
-              <Form2 />
+            <div className="w-4/5 lg:w-11/12 xl:w-[1100px] 2xl:w-[1200px] m-auto">
+              <Form2 callback={getDataForm2} />
+            </div>,
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
+              <Form3 callback={getDataForm3} />
             </div>,
           ]}
-          containerItemsStyle="w-full p-[0_0_4rem_0]"
         />
         {/* <div className="w-4/5 sm:h-2/3 md:w-2/3 lg:w-3/5 xl:max-w-[600px] xl:w-2/5">
           <Form1 />
