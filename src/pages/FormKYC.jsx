@@ -6,17 +6,21 @@ import Carousel from "../components/Carousel/Carousel";
 import { useState } from "react";
 import { useEffect } from "react";
 import Form3 from "../components/Forms/Form3";
+import Form4 from "../components/Forms/Form4";
 
 const FormKYC = () => {
   const [dataForm1, setDataForm1] = useState([]);
   const [dataForm2, setDataForm2] = useState([]);
   const [dataForm3, setDataForm3] = useState([]);
+  const [dataForm4, setDataForm4] = useState([]);
   const getDataForm1 = (data) => setDataForm1(data);
   const getDataForm2 = (data) => setDataForm2(data);
   const getDataForm3 = (data) => setDataForm3(data);
+  const getDataForm4 = (data) => setDataForm4(data);
   useEffect(() => console.log({ dataForm1 }), [dataForm1]);
   useEffect(() => console.log({ dataForm2 }), [dataForm2]);
   useEffect(() => console.log({ dataForm3 }), [dataForm3]);
+  useEffect(() => console.log({ dataForm4 }), [dataForm4]);
   return (
     <Layout>
       <div className="flex flex-col justify-center bg-slate-800">
@@ -34,11 +38,11 @@ const FormKYC = () => {
             <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
               <Form3 callback={getDataForm3} />
             </div>,
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
+              <Form4 callback={getDataForm4} />
+            </div>,
           ]}
         />
-        {/* <div className="w-4/5 sm:h-2/3 md:w-2/3 lg:w-3/5 xl:max-w-[600px] xl:w-2/5">
-          <Form1 />
-        </div> */}
       </div>
     </Layout>
   );

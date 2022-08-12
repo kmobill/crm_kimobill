@@ -82,7 +82,7 @@ const Form1 = ({ callback }) => {
       informacionGeneral: info,
     });
   };
-  useEffect(()=>console.log(preview),[preview])
+  useEffect(() => console.log(preview), [preview]);
   const handleChange = (e, i, setfunction, array) => {
     console.log("handleChange");
     const temp = [...array];
@@ -119,7 +119,7 @@ const Form1 = ({ callback }) => {
     <div className="">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
-          Parte 1 Información de la entidad
+          Parte 1. Información de la entidad
         </h1>
         <form className="flex flex-col gap-1">
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
@@ -258,7 +258,7 @@ const Form1 = ({ callback }) => {
           <div className="">
             <section className="py-3 px-2">
               <div className="flex flex-col justify-center text-slate-300 gap-2">
-                <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
+                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
                   Número de agencias por ubicación (click en la región)
                 </h1>
                 <ul className="grid  grid-cols-1 sm:grid-cols-2 text-center gap-2 text-slate-300">
@@ -586,7 +586,7 @@ const Form1 = ({ callback }) => {
               </div>
             </section>
             <section className="flex flex-col gap-4">
-              <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,270px)] text-center self-center">
+              <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
                 Agencias en el exterior
               </h1>
               <div className="flex flex-col md:flex-row w-full md:justify-center gap-4 md:gap-10 items-center text-slate-100 p-1">
@@ -632,24 +632,20 @@ const Form1 = ({ callback }) => {
             </section>
           </div>
         </form>
-        <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2">
+        <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
+          {/* <div className="test-grid"> */}
           <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección
           </button>
-          <Modal title="Vista Previa" parentFunction={handlePreview}>
-            {JSON.stringify(preview,null,'\t')}
+          <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
+            <div>
+              <h1 className="italic text-2xl text-center">Vista previa Parte 1</h1>
+              <p>{JSON.stringify(preview, null, "\t")}</p>
+            </div>
           </Modal>
-          
-          
-          {/* <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
-            onClick={() => handlePreview()}
-          >
-            Vista Previa
-          </button> */}
         </div>
       </section>
     </div>

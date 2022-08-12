@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --input-range-ball-color: #0c5c87;
+  --input-range-ball-hover-color: #003755;
+  --input-range-bar-color: #03679c;
+  --input-range-bar-gradient: linear-gradient(
+    90deg,
+    hsl(190deg 98% 25%) 0%,
+    hsl(190deg 99% 26%) 7%,
+    hsl(190deg 99% 27%) 13%,
+    hsl(189deg 100% 28%) 20%,
+    hsl(189deg 100% 29%) 27%,
+    hsl(189deg 100% 29%) 33%,
+    hsl(189deg 100% 30%) 40%,
+    hsl(189deg 100% 31%) 47%,
+    hsl(189deg 100% 31%) 53%,
+    hsl(189deg 100% 30%) 60%,
+    hsl(189deg 100% 29%) 67%,
+    hsl(189deg 100% 29%) 73%,
+    hsl(189deg 100% 28%) 80%,
+    hsl(190deg 99% 27%) 87%,
+    hsl(190deg 99% 26%) 93%,
+    hsl(190deg 98% 25%) 100%
+  );
+}
+
 /* input Number withut arrows */
 .no-arrows::-webkit-outer-spin-button,
 .no-arrows::-webkit-inner-spin-button {
@@ -9,7 +34,98 @@
   margin: 0;
 }
 .no-arrows[type="number"] {
-  -moz-appearance: textfield;  
+  -moz-appearance: textfield;
+}
+
+/*input range custom */
+
+/* input[type="range"]:focus,
+input[type="number"]:focus {
+  box-shadow: 0 0 3px 1px #4b81dd;
+  outline: none;
+} */
+/* input {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+} */
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 9px;
+  border-radius: 5px;
+  background-image: var(--input-range-bar-gradient);
+}
+
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 17px;
+  width: 17px;
+  border: none;
+  border-radius: 50%;
+  background: var(--input-range-ball-color);
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  -webkit-appearance: none;
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background: var(--input-range-ball-color);
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-ms-thumb {
+  border: none;
+  -webkit-appearance: none;
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background: var(--input-range-ball-color);
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: var(--input-range-ball-hover-color);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background-color: var(--input-range-ball-hover-color);
+}
+
+input[type="range"]::-ms-thumb:hover {
+  background-color: var(--input-range-ball-hover-color);
+}
+
+/* Input Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
 }
 
 /*fonts*/

@@ -6,8 +6,10 @@ import TextField from "@mui/material/TextField";
 import deleteIcon from "../../assets/icons/close.png";
 import addIcon from "../../assets/icons/plus.png";
 import { estilosCalendario } from "../../utils/constants";
+import Modal from "../Modal/Modal";
 
 const Form2 = ({ callback }) => {
+  const [preview, setPreview] = useState({});
   const [repLegales, setRepLegales] = useState([
     {
       CI: "",
@@ -28,6 +30,12 @@ const Form2 = ({ callback }) => {
   ]);
   const handleSave = () => {
     callback({
+      repLegales: repLegales,
+      accionistas: accionistas,
+    });
+  };
+  const handlePreview = () => {
+    setPreview({
       repLegales: repLegales,
       accionistas: accionistas,
     });
@@ -56,19 +64,22 @@ const Form2 = ({ callback }) => {
     <div className="">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
-          Parte 2 Administración de la entidad
+          Parte 2. Administración de la entidad
         </h1>
         <form className="flex flex-col gap-1">
           <div className="flex flex-col justify-center text-slate-300">
             <ul className="flex flex-col text-center gap-2 text-slate-300">
-              <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
+              <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
                 Datos de Representantes Legales
               </h1>
               <li>
                 <div className="text-center gap-2 text-slate-300">
                   <table className="w-full">
                     <thead className="w-full ">
-                      <tr className="grid grid-cols-[repeat(5,1fr)_30px] gap-1">
+                      <tr className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1">
+                        <th className="fw-regular bg-sky-800 text-center">
+                          n
+                        </th>
                         <th className="fw-regular bg-sky-800">
                           Número de Identificación
                         </th>
@@ -88,8 +99,11 @@ const Form2 = ({ callback }) => {
                           return (
                             <tr
                               key={i}
-                              className="grid grid-cols-[repeat(5,1fr)_30px] gap-1 text-slate-900"
+                              className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1 text-slate-900"
                             >
+                              <td className="px-1 py-[2px] bg-slate-300 text-center">
+                                {i + 1}
+                              </td>
                               <td>
                                 <input
                                   required
@@ -223,7 +237,7 @@ const Form2 = ({ callback }) => {
               </li>
               <li className="flex justify-center">
                 <section className="flex flex-col w-5/6 text-left gap-2">
-                  <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
+                  <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
                     Datos de Accionistas
                   </h1>
                   <p>
@@ -246,13 +260,14 @@ const Form2 = ({ callback }) => {
                 </section>
               </li>
               <li className="flex flex-col gap-5">
-                <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,400px)] text-center self-center">
+                {/* <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
                   Datos de Accionistas
-                </h1>
+                </h1> */}
                 <div className="text-center gap-2 text-slate-300">
                   <table className="w-full">
                     <thead className="w-full ">
-                      <tr className="grid grid-cols-[repeat(5,1fr)_30px] gap-1">
+                      <tr className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1">
+                        <th className="fw-regular bg-sky-800 text-center">n</th>
                         <th className="fw-regular bg-sky-800">
                           Número de Identificación
                         </th>
@@ -272,8 +287,11 @@ const Form2 = ({ callback }) => {
                           return (
                             <tr
                               key={i}
-                              className="grid grid-cols-[repeat(5,1fr)_30px] gap-1 text-slate-900"
+                              className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1 text-slate-900"
                             >
+                              <td className="px-1 py-[2px] bg-slate-300 text-center">
+                                {i + 1}
+                              </td>
                               <td>
                                 <input
                                   required
@@ -408,19 +426,21 @@ const Form2 = ({ callback }) => {
             </ul>
           </div>
         </form>
-        <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2">
+        <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
           <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección
           </button>
-          <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
-            onClick={() => handleSave()}
-          >
-            Vista Previa
-          </button>
+          <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
+            <div>
+              <h1 className="italic text-2xl text-center">
+                Vista previa Parte 2
+              </h1>
+              <p>{JSON.stringify(preview, null, "\t")}</p>
+            </div>
+          </Modal>
         </div>
       </section>
     </div>

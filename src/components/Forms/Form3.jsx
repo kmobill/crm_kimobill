@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
 const Form3 = ({ callback }) => {
   const [activos, setActivos] = useState(0);
@@ -9,8 +10,16 @@ const Form3 = ({ callback }) => {
   const [gastos, setGastos] = useState(0);
   const [utilidadPerdida, setUtilidadPerdida] = useState(0);
 
+  const [preview, setPreview] = useState({});
+
   const handleSave = () => {
     callback({
+      balanceGeneral: {activos,pasivos,patrimonio},
+      estadoPerdidaGanancias: {ingresos,gastos,utilidadPerdida}
+    });
+  };
+  const handlePreview = () => {
+    setPreview({
       balanceGeneral: {activos,pasivos,patrimonio},
       estadoPerdidaGanancias: {ingresos,gastos,utilidadPerdida}
     });
@@ -34,11 +43,11 @@ const Form3 = ({ callback }) => {
     <div>
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
-          Parte 3 Situación financiera
+          Parte 3. Situación financiera
         </h1>
         <form className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,270px)] text-center">
+            <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
               Balance General
             </h1>
             <section className="w-full">
@@ -97,7 +106,7 @@ const Form3 = ({ callback }) => {
             </section>
           </section>
           <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-white bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,270px)] text-center">
+            <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
               Estado de Perdidas y Ganancias
             </h1>
             <section className="w-full">
@@ -156,19 +165,21 @@ const Form3 = ({ callback }) => {
             </section>
           </section>
         </form>
-        <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2">
+        <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
+
+        {/* <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2"> */}
           <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
+            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección
           </button>
-          <button
-            className="bg-slate-500 text-slate-300 w-[min(80%,300px)] md:w-[min(40%,250px)] rounded-md py-1 text-xl"
-            onClick={() => handleSave()}
-          >
-            Vista Previa
-          </button>
+          <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
+            <div>
+              <h1 className="italic text-2xl text-center">Vista previa Parte 3</h1>
+              <p>{JSON.stringify(preview, null, "\t")}</p>
+            </div>
+          </Modal>
         </div>
       </section>
     </div>
