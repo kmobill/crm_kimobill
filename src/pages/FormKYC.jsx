@@ -14,14 +14,17 @@ const FormKYC = () => {
   const [dataForm2, setDataForm2] = useState([]);
   const [dataForm3, setDataForm3] = useState([]);
   const [dataForm4, setDataForm4] = useState([]);
+  const [dataForm5, setDataForm5] = useState([]);
   const getDataForm1 = (data) => setDataForm1(data);
   const getDataForm2 = (data) => setDataForm2(data);
   const getDataForm3 = (data) => setDataForm3(data);
   const getDataForm4 = (data) => setDataForm4(data);
+  const getDataForm5 = (data) => setDataForm5(data);
   useEffect(() => console.log({ dataForm1 }), [dataForm1]);
   useEffect(() => console.log({ dataForm2 }), [dataForm2]);
   useEffect(() => console.log({ dataForm3 }), [dataForm3]);
   useEffect(() => console.log({ dataForm4 }), [dataForm4]);
+  useEffect(() => console.log({ dataForm4 }), [dataForm5]);
   return (
     <Layout>
       <div className="flex flex-col justify-center bg-slate-800">
@@ -43,7 +46,7 @@ const FormKYC = () => {
               <Form4 callback={getDataForm4} />
             </div>,
             <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
-              <Form5 callback={getDataForm4} />
+              <Form5 callback={getDataForm5} />
             </div>,
           ]}
         />

@@ -3,9 +3,9 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
-import { estilosCalendario } from "../../utils/constants";
 import deleteIcon from "../../assets/icons/close.png";
 import addIcon from "../../assets/icons/plus.png";
+import { estilosCalendario } from "../../utils/constants";
 import Modal from "../Modal/Modal";
 
 const Form2 = ({ callback }) => {
@@ -69,7 +69,7 @@ const Form2 = ({ callback }) => {
         <form className="flex flex-col gap-1">
           <div className="flex flex-col justify-center text-slate-300">
             <ul className="flex flex-col text-center gap-2 text-slate-300">
-              <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
+              <h1 className="text-slate-900 bg-slate-500 px-4 py-1 tw-fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
                 Datos de Representantes Legales
               </h1>
               <li>
@@ -237,7 +237,7 @@ const Form2 = ({ callback }) => {
               </li>
               <li className="flex justify-center">
                 <section className="flex flex-col w-5/6 text-left gap-2">
-                  <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
+                  <h1 className="text-slate-900 bg-slate-500 px-4 py-1 tw-fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
                     Datos de Accionistas
                   </h1>
                   <p>
