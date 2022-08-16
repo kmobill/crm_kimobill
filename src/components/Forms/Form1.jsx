@@ -258,7 +258,7 @@ const Form1 = ({ callback }) => {
           <div className="">
             <section className="py-3 px-2">
               <div className="flex flex-col justify-center text-slate-300 gap-2">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
+                <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
                   Número de agencias por ubicación (click en la región)
                 </h1>
                 <ul className="grid  grid-cols-1 sm:grid-cols-2 text-center gap-2 text-slate-300">
@@ -586,7 +586,7 @@ const Form1 = ({ callback }) => {
               </div>
             </section>
             <section className="flex flex-col gap-4">
-              <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center self-center">
+              <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
                 Agencias en el exterior
               </h1>
               <div className="flex flex-col md:flex-row w-full md:justify-center gap-4 md:gap-10 items-center text-slate-100 p-1">

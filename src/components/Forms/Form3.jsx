@@ -47,7 +47,7 @@ const Form3 = ({ callback }) => {
         </h1>
         <form className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+            <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center">
               Balance General
             </h1>
             <section className="w-full">
@@ -106,7 +106,7 @@ const Form3 = ({ callback }) => {
             </section>
           </section>
           <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+            <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center">
               Estado de Perdidas y Ganancias
             </h1>
             <section className="w-full">

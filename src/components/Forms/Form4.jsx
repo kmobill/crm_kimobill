@@ -308,8 +308,8 @@ const Form4 = ({ callback }) => {
                 </ul>
               </section>
 
-              <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+              <section className="flex flex-col w-full items-center gap-5 ">
+                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   1.1 Indique las transacciones que más alertas genera en su
                   Revisiones de Monitoreo. (en porcentaje)
                 </h1>
@@ -445,7 +445,7 @@ const Form4 = ({ callback }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   1.2 indique el número de ROIIS que reportan al organismo de
                   control mensualmente
                 </h1>
@@ -586,7 +586,7 @@ const Form4 = ({ callback }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   Actividad Económica de Clientes
                 </h1>
                 <ul className="flex flex-col gap-3 w-full">
@@ -877,7 +877,7 @@ const Form4 = ({ callback }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   2.1 Indique los cinco clientes con mayor nivel transaccional y
                   describa sus actividades económicas.
                 </h1>
@@ -963,7 +963,7 @@ const Form4 = ({ callback }) => {
                 </table>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   Riesgo De Clientes
                 </h1>
                 <ul className="flex flex-col gap-3 w-3/4 md:w-11/12 lg:w-4/5">

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Form3 from "../components/Forms/Form3";
 import Form4 from "../components/Forms/Form4";
+import Form5 from "../components/Forms/Form5";
 
 const FormKYC = () => {
   const [dataForm1, setDataForm1] = useState([]);
@@ -40,6 +41,9 @@ const FormKYC = () => {
             </div>,
             <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
               <Form4 callback={getDataForm4} />
+            </div>,
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
+              <Form5 callback={getDataForm4} />
             </div>,
           ]}
         />
