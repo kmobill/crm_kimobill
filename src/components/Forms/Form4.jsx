@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
+const NUMBER_MIN = 1;
 const NUMBER_CLIENTS = 5;
 const Form4 = ({ callback }) => {
+  const form4 = useRef(null);
   const [ROISS, setROISS] = useState(0);
   const [riesgoPLA, setRiesgoPLA] = useState(false);
   const [riesgoPLADetalle, setRiesgoPLADetalle] = useState({
@@ -64,16 +67,21 @@ const Form4 = ({ callback }) => {
 
   const [preview, setPreview] = useState({});
   const handleSave = () => {
-    callback({
-      productosServicios: { productosServicios, transAlertaMonitoreo },
-      baseClientes: {
-        baseClientes,
-        clientesMayorIngreso,
-        riesgoPLA,
-        riesgoPLADetalle,
-      },
-      corresponsales: corresponsales,
-    });
+    const check = form4.current.checkValidity();
+    form4.current.reportValidity();
+    if (check) {
+      callback({
+        productosServicios: { productosServicios, transAlertaMonitoreo },
+        baseClientes: {
+          baseClientes,
+          clientesMayorIngreso,
+          riesgoPLA,
+          riesgoPLADetalle,
+        },
+        corresponsales: corresponsales,
+      });
+      simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
+    }
   };
   const handlePreview = () => {
     setPreview({
@@ -104,21 +112,21 @@ const Form4 = ({ callback }) => {
     [clientesMayorIngreso]
   );
   useEffect(() => console.log({ productosServicios }), [productosServicios]);
-  useEffect(() => console.log({ riesgoPLADetalle }), [riesgoPLADetalle]);
+  /*   useEffect(() => console.log({ riesgoPLADetalle }), [riesgoPLADetalle]);
   useEffect(() => console.log({ baseClientes }), [baseClientes]);
-  useEffect(() => console.log({ corresponsales }), [corresponsales]);
+  useEffect(() => console.log({ corresponsales }), [corresponsales]); */
   useEffect(() => console.log({ menusOpen }), [menusOpen]);
-  useEffect(
+  /*  useEffect(
     () => console.log({ transAlertaMonitoreo }),
     [transAlertaMonitoreo]
-  );
+  ); */
   return (
     <div className="fw-regular">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 4. Productos y Servicios, Clientes, Corresponsales
         </h1>
-        <form className="flex flex-col gap-8">
+        <form ref={form4} className="flex flex-col gap-8">
           <h1
             onClick={() =>
               handleChange2(
@@ -145,8 +153,7 @@ const Form4 = ({ callback }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
-                      value={productosServicios.ctaDeposito}
+                      checked={productosServicios.ctaDeposito}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -166,8 +173,7 @@ const Form4 = ({ callback }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
-                      value={productosServicios.comercioExt}
+                      checked={productosServicios.comercioExt}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -189,7 +195,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.bancaElect}
+                      checked={productosServicios.bancaElect}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -210,7 +216,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.inversionesDerivados}
+                      checked={productosServicios.inversionesDerivados}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -231,7 +237,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.remesas}
+                      checked={productosServicios.remesas}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -252,7 +258,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.transfExt}
+                      checked={productosServicios.transfExt}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -273,7 +279,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.emisionChequesExt}
+                      checked={productosServicios.emisionChequesExt}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -294,7 +300,7 @@ const Form4 = ({ callback }) => {
                       name="activos"
                       id="activos"
                       required
-                      value={productosServicios.transValores}
+                      checked={productosServicios.transValores}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -978,7 +984,7 @@ const Form4 = ({ callback }) => {
                         type="checkbox"
                         name="activos"
                         id="activos"
-                        required
+                        checked={riesgoPLA}
                         onChange={(e) => setRiesgoPLA(e.target.checked)}
                       />
                     </div>
@@ -1128,9 +1134,7 @@ const Form4 = ({ callback }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
-                      // value={activos}
-                      value={corresponsales.ofreceServFinancieros}
+                      checked={corresponsales.ofreceServFinancieros}
                       onChange={(e) =>
                         handleChange2(
                           e.target.checked,
@@ -1154,7 +1158,7 @@ const Form4 = ({ callback }) => {
                           id="activos"
                           required
                           // value={activos}
-                          value={corresponsales.cuentasDeposito}
+                          checked={corresponsales.cuentasDeposito}
                           onChange={(e) =>
                             handleChange2(
                               e.target.checked,
@@ -1174,9 +1178,7 @@ const Form4 = ({ callback }) => {
                           type="checkbox"
                           name="activos"
                           id="activos"
-                          required
-                          // value={activos}
-                          value={corresponsales.transExterior}
+                          checked={corresponsales.transExterior}
                           onChange={(e) =>
                             handleChange2(
                               e.target.checked,
@@ -1196,9 +1198,7 @@ const Form4 = ({ callback }) => {
                           type="checkbox"
                           name="activos"
                           id="activos"
-                          required
-                          // value={activos}
-                          value={corresponsales.compensacionChequesExterior}
+                          checked={corresponsales.compensacionChequesExterior}
                           onChange={(e) =>
                             handleChange2(
                               e.target.checked,
@@ -1218,9 +1218,7 @@ const Form4 = ({ callback }) => {
                           type="checkbox"
                           name="activos"
                           id="activos"
-                          required
-                          // value={activos}
-                          value={corresponsales.custodia}
+                          checked={corresponsales.custodia}
                           onChange={(e) =>
                             handleChange2(
                               e.target.checked,
@@ -1241,9 +1239,7 @@ const Form4 = ({ callback }) => {
                           type="checkbox"
                           name="activos"
                           id="activos"
-                          required
-                          // value={activos}
-                          value={
+                          checked={
                             corresponsales.cuentasEnOtrasEntidadesFinancieras
                           }
                           onChange={(e) =>
@@ -1303,6 +1299,9 @@ const Form4 = ({ callback }) => {
             </div>
           </Modal>
         </div>
+        <button onClick={() => console.log({ productosServicios })}>
+          show productos
+        </button>
       </section>
     </div>
   );

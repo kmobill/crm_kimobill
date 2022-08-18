@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
+const NUMBER_MIN = 1;
 const Form3 = ({ callback }) => {
+  const form3 = useRef(null);
   const [activos, setActivos] = useState(0);
   const [pasivos, setPasivos] = useState(0);
   const [patrimonio, setPatrimonio] = useState(0);
@@ -13,15 +16,19 @@ const Form3 = ({ callback }) => {
   const [preview, setPreview] = useState({});
 
   const handleSave = () => {
-    callback({
-      balanceGeneral: {activos,pasivos,patrimonio},
-      estadoPerdidaGanancias: {ingresos,gastos,utilidadPerdida}
-    });
+    form3.current.reportValidity();
+    if (form3.current.checkValidity()) {
+      callback({
+        balanceGeneral: { activos, pasivos, patrimonio },
+        estadoPerdidaGanancias: { ingresos, gastos, utilidadPerdida },
+      });
+      simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
+    }
   };
   const handlePreview = () => {
     setPreview({
-      balanceGeneral: {activos,pasivos,patrimonio},
-      estadoPerdidaGanancias: {ingresos,gastos,utilidadPerdida}
+      balanceGeneral: { activos, pasivos, patrimonio },
+      estadoPerdidaGanancias: { ingresos, gastos, utilidadPerdida },
     });
   };
   useEffect(() => {
@@ -45,7 +52,7 @@ const Form3 = ({ callback }) => {
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 3. Situación financiera
         </h1>
-        <form className="flex flex-col gap-8">
+        <form ref={form3} id="formPart3" className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
             <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center">
               Balance General
@@ -60,7 +67,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="activos"
                   id="activos"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   value={activos}
@@ -77,7 +84,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="pasivos"
                   id="pasivos"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   value={pasivos}
@@ -96,7 +103,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="razon_social"
                   id="razon_social"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   readOnly
@@ -119,7 +126,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="ingresos"
                   id="ingresos"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   value={ingresos}
@@ -136,7 +143,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="gastos"
                   id="gastos"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   value={gastos}
@@ -155,7 +162,7 @@ const Form3 = ({ callback }) => {
                   type="number"
                   name="utilidad-perdida"
                   id="utilidad-perdida"
-                  min={0}
+                  min={NUMBER_MIN}
                   max={NUMBER_LIMIT}
                   required
                   readOnly
@@ -166,17 +173,17 @@ const Form3 = ({ callback }) => {
           </section>
         </form>
         <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
-
-        {/* <div className="w-full flex flex-col md:flex-row justify-center items-center py-5 gap-2"> */}
           <button
             className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
-            onClick={() => handleSave()}
+            onClick={(e) => handleSave(e)}
           >
             Guardar esta Sección
           </button>
           <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
             <div>
-              <h1 className="italic text-2xl text-center">Vista previa Parte 3</h1>
+              <h1 className="italic text-2xl text-center">
+                Vista previa Parte 3
+              </h1>
               <p>{JSON.stringify(preview, null, "\t")}</p>
             </div>
           </Modal>

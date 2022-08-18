@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -7,8 +7,13 @@ import deleteIcon from "../../assets/icons/close.png";
 import addIcon from "../../assets/icons/plus.png";
 import { estilosCalendario } from "../../utils/constants";
 import Modal from "../Modal/Modal";
+import simpleAlert from "../../utils/Alerts";
+
+const NUMBER_LIMIT = 1000000000;
+const NUMBER_MIN = 1;
 
 const Form2 = ({ callback }) => {
+  const form2 = useRef(null);
   const [preview, setPreview] = useState({});
   const [repLegales, setRepLegales] = useState([
     {
@@ -29,10 +34,14 @@ const Form2 = ({ callback }) => {
     },
   ]);
   const handleSave = () => {
-    callback({
-      repLegales: repLegales,
-      accionistas: accionistas,
-    });
+    form2.current.reportValidity();
+    if (form2.current.checkValidity()) {
+      callback({
+        repLegales: repLegales,
+        accionistas: accionistas,
+      });
+      simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
+    }
   };
   const handlePreview = () => {
     setPreview({
@@ -66,7 +75,7 @@ const Form2 = ({ callback }) => {
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 2. Administración de la entidad
         </h1>
-        <form className="flex flex-col gap-1">
+        <form ref={form2} className="flex flex-col gap-1">
           <div className="flex flex-col justify-center text-slate-300">
             <ul className="flex flex-col text-center gap-2 text-slate-300">
               <h1 className="text-slate-900 bg-slate-500 px-4 py-1 tw-fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
@@ -77,9 +86,7 @@ const Form2 = ({ callback }) => {
                   <table className="w-full">
                     <thead className="w-full ">
                       <tr className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1">
-                        <th className="fw-regular bg-sky-800 text-center">
-                          n
-                        </th>
+                        <th className="fw-regular bg-sky-800 text-center">n</th>
                         <th className="fw-regular bg-sky-800">
                           Número de Identificación
                         </th>

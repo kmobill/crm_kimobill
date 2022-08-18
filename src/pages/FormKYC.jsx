@@ -24,7 +24,7 @@ const FormKYC = () => {
   useEffect(() => console.log({ dataForm2 }), [dataForm2]);
   useEffect(() => console.log({ dataForm3 }), [dataForm3]);
   useEffect(() => console.log({ dataForm4 }), [dataForm4]);
-  useEffect(() => console.log({ dataForm4 }), [dataForm5]);
+  useEffect(() => console.log({ dataForm5 }), [dataForm5]);
   return (
     <Layout>
       <div className="flex flex-col justify-center bg-slate-800">

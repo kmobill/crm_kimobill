@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "../Modal/Modal";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import { estilosCalendario } from "../../utils/constants";
+import simpleAlert from "../../utils/Alerts";
 const Form5 = ({ callback }) => {
   const [preview, setPreview] = useState({});
+  const form5 = useRef(null);
   const preguntas = [
     "1. ¿Tiene un Manual de Prevención de Lavado de Activos?",
     "2. ¿Tiene políticas de Conocimiento de Clientes?",
@@ -71,9 +73,20 @@ const Form5 = ({ callback }) => {
     "OTRAS (Detalle)",
   ];
   const handleSave = () => {
-    callback({});
+    form5.current.reportValidity();
+    if (form5.current.checkValidity()) {
+      callback({});
+      simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
+    }
   };
   const handlePreview = () => {
+    const data = {
+      preguntas: [...respuestas],
+    };
+    const aux = respuestas.map((item, key) => {
+      return { key: item };
+    });
+    console.log(aux);
     setPreview({});
   };
   const handleChangeArray = (value, setArray, array, key) => {
@@ -124,7 +137,7 @@ const Form5 = ({ callback }) => {
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 5. Programa de cumplimiento
         </h1>
-        <form className="flex flex-col gap-8">
+        <form ref={form5} className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
             <ul className="flex flex-col gap-3 w-full">
               {preguntas.map((pregunta, i) => (
@@ -141,7 +154,7 @@ const Form5 = ({ callback }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
+                      checked = {respuestas[i]}
                       onChange={(e) =>
                         handleChangeArray(
                           e.target.checked,
@@ -202,6 +215,7 @@ const Form5 = ({ callback }) => {
                               2.1
                             )
                           }
+                          required
                           name="detalle clientes"
                           id=""
                           cols="30"
@@ -229,6 +243,7 @@ const Form5 = ({ callback }) => {
                               3.1
                             )
                           }
+                          required
                           name="detalle clientes"
                           id=""
                           cols="30"
@@ -365,8 +380,7 @@ const Form5 = ({ callback }) => {
                                   type="checkbox"
                                   name="activos"
                                   id="activos"
-                                  required
-                                  value={value}
+                                  checked={value}
                                   onChange={(e) =>
                                     handleChangeArrayObjectArray(
                                       e.target.checked,
@@ -404,8 +418,7 @@ const Form5 = ({ callback }) => {
                                   type="checkbox"
                                   name="activos"
                                   id="activos"
-                                  required
-                                  value={value}
+                                  checked={value}
                                   onChange={(e) =>
                                     handleChangeArrayObjectArray(
                                       e.target.checked,
@@ -456,7 +469,7 @@ const Form5 = ({ callback }) => {
                             name="activos"
                             id="activos"
                             min={0}
-                            max={100}
+                            max={1000}
                             value={subRespuestas[i][6.1]}
                             onChange={(e) =>
                               handleChangeArrayObject(
@@ -634,7 +647,7 @@ const Form5 = ({ callback }) => {
                             name="activos"
                             id="activos"
                             required
-                            value={subRespuestas[i]["7.1.1"]}
+                            checked={subRespuestas[i]["7.1.1"]}
                             onChange={(e) =>
                               handleChangeArrayObject(
                                 e.target.checked,
@@ -912,6 +925,7 @@ const Form5 = ({ callback }) => {
                                 10.1
                               )
                             }
+                            required
                             name="detalle clientes"
                             id=""
                             cols="30"
@@ -930,144 +944,153 @@ const Form5 = ({ callback }) => {
                   evaluación al cumplimiento de las políticas de Prevención de
                   Lavado de Activos?
                 </h1>
-                <ul className="flex flex-col w-full text-slate-400 gap-2">
-                  <li className="flex flex-row gap-2 justify-center">
-                    <label className="" htmlFor="activos">
-                      Auditoría Interna
-                    </label>
-                    <input
-                      className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
-                      type="checkbox"
-                      name="activos"
-                      id="activos"
-                      required
-                      value={subRespuestas[10][11.1]["resp"]}
-                      onChange={(e) =>
-                        handleChangeArrayObjectObject(
-                          e.target.checked,
-                          setSubRespuestas,
-                          subRespuestas,
-                          10,
-                          11.1,
-                          "resp"
-                        )
-                      }
-                    />
-                    <div className="flex flex-row gap-2">
-                      <h1>Fecha:</h1>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DesktopDatePicker
-                          value={subRespuestas[10][11.1]["fecha"]}
-                          onChange={(date) =>
-                            handleChangeArrayObjectObject(
-                              date,
-                              setSubRespuestas,
-                              subRespuestas,
-                              10,
-                              11.1,
-                              "fecha"
-                            )
-                          }
-                          mask="__-__-____"
-                          inputFormat="dd-MM-yyyy"
-                          renderInput={(params) => (
-                            <TextField {...params} sx={estilosCalendario} />
-                          )}
-                        />
-                      </LocalizationProvider>
+                <ul className="flex flex-col w-[500px] text-slate-400 gap-2">
+                  <li className="flex flex-row gap-2 justify-between">
+                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                      <label className="" htmlFor="activos">
+                        Auditoría Interna
+                      </label>
+                      <input
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        type="checkbox"
+                        name="activos"
+                        id="activos"
+                        checked={subRespuestas[10][11.1]["resp"]}
+                        onChange={(e) =>
+                          handleChangeArrayObjectObject(
+                            e.target.checked,
+                            setSubRespuestas,
+                            subRespuestas,
+                            10,
+                            11.1,
+                            "resp"
+                          )
+                        }
+                      />
                     </div>
+                    {subRespuestas[10][11.1]["resp"] && (
+                      <div className="flex flex-row gap-2">
+                        <h1>Fecha:</h1>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DesktopDatePicker
+                            value={subRespuestas[10][11.1]["fecha"]}
+                            onChange={(date) =>
+                              handleChangeArrayObjectObject(
+                                date,
+                                setSubRespuestas,
+                                subRespuestas,
+                                10,
+                                11.1,
+                                "fecha"
+                              )
+                            }
+                            mask="__-__-____"
+                            inputFormat="dd-MM-yyyy"
+                            renderInput={(params) => (
+                              <TextField {...params} sx={estilosCalendario} />
+                            )}
+                          />
+                        </LocalizationProvider>
+                      </div>
+                    )}
                   </li>
-                  <li className="flex flex-row gap-2 justify-center">
-                    <label className="" htmlFor="activos">
-                      Auditoría Externa
-                    </label>
-                    <input
-                      className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
-                      type="checkbox"
-                      name="activos"
-                      id="activos"
-                      required
-                      value={subRespuestas[10][11.2]["resp"]}
-                      onChange={(e) =>
-                        handleChangeArrayObjectObject(
-                          e.target.checked,
-                          setSubRespuestas,
-                          subRespuestas,
-                          10,
-                          11.2,
-                          "resp"
-                        )
-                      }
-                    />
-                    <div className="flex flex-row gap-2">
-                      <h1>Fecha:</h1>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DesktopDatePicker
-                          value={subRespuestas[10][11.2]["fecha"]}
-                          onChange={(date) =>
-                            handleChangeArrayObjectObject(
-                              date,
-                              setSubRespuestas,
-                              subRespuestas,
-                              10,
-                              11.2,
-                              "fecha"
-                            )
-                          }
-                          mask="__-__-____"
-                          inputFormat="dd-MM-yyyy"
-                          renderInput={(params) => (
-                            <TextField {...params} sx={estilosCalendario} />
-                          )}
-                        />
-                      </LocalizationProvider>
+                  <li className="flex flex-row gap-2 justify-between">
+                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                      <label className="" htmlFor="activos">
+                        Auditoría Externa
+                      </label>
+                      <input
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        type="checkbox"
+                        name="activos"
+                        id="activos"
+                        checked={subRespuestas[10][11.2]["resp"]}
+                        onChange={(e) =>
+                          handleChangeArrayObjectObject(
+                            e.target.checked,
+                            setSubRespuestas,
+                            subRespuestas,
+                            10,
+                            11.2,
+                            "resp"
+                          )
+                        }
+                      />
                     </div>
+                    {subRespuestas[10][11.2]["resp"] && (
+                      <div className="flex flex-row gap-2">
+                        <h1>Fecha:</h1>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DesktopDatePicker
+                            value={subRespuestas[10][11.2]["fecha"]}
+                            onChange={(date) =>
+                              handleChangeArrayObjectObject(
+                                date,
+                                setSubRespuestas,
+                                subRespuestas,
+                                10,
+                                11.2,
+                                "fecha"
+                              )
+                            }
+                            mask="__-__-____"
+                            inputFormat="dd-MM-yyyy"
+                            renderInput={(params) => (
+                              <TextField {...params} sx={estilosCalendario} />
+                            )}
+                          />
+                        </LocalizationProvider>
+                      </div>
+                    )}
                   </li>
-                  <li className="flex flex-row gap-2 justify-center">
-                    <label className="" htmlFor="activos">
-                      Auditoría Ente de Control
-                    </label>
-                    <input
-                      className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
-                      type="checkbox"
-                      name="activos"
-                      id="activos"
-                      required
-                      value={subRespuestas[10][11.3]["resp"]}
-                      onChange={(e) =>
-                        handleChangeArrayObjectObject(
-                          e.target.checked,
-                          setSubRespuestas,
-                          subRespuestas,
-                          10,
-                          11.1,
-                          "resp"
-                        )
-                      }
-                    />
-                    <div className="flex flex-row gap-2">
-                      <h1>Fecha:</h1>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DesktopDatePicker
-                          value={subRespuestas[10][11.3]["fecha"]}
-                          onChange={(date) =>
-                            handleChangeArrayObjectObject(
-                              date,
-                              setSubRespuestas,
-                              subRespuestas,
-                              10,
-                              11.3,
-                              "fecha"
-                            )
-                          }
-                          mask="__-__-____"
-                          inputFormat="dd-MM-yyyy"
-                          renderInput={(params) => (
-                            <TextField {...params} sx={estilosCalendario} />
-                          )}
-                        />
-                      </LocalizationProvider>
+                  <li className="flex flex-row gap-2 justify-between">
+                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                      <label className="" htmlFor="activos">
+                        Auditoría Ente de Control
+                      </label>
+                      <input
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        type="checkbox"
+                        name="activos"
+                        id="activos"
+                        checked={subRespuestas[10][11.3]["resp"]}
+                        onChange={(e) =>
+                          handleChangeArrayObjectObject(
+                            e.target.checked,
+                            setSubRespuestas,
+                            subRespuestas,
+                            10,
+                            11.3,
+                            "resp"
+                          )
+                        }
+                      />
                     </div>
+                    {subRespuestas[10][11.3]["resp"] && (
+                      <div className="flex flex-row gap-2">
+                        <h1>Fecha:</h1>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DesktopDatePicker
+                            value={subRespuestas[10][11.3]["fecha"]}
+                            onChange={(date) =>
+                              handleChangeArrayObjectObject(
+                                date,
+                                setSubRespuestas,
+                                subRespuestas,
+                                10,
+                                11.3,
+                                "fecha"
+                              )
+                            }
+                            mask="__-__-____"
+                            inputFormat="dd-MM-yyyy"
+                            renderInput={(params) => (
+                              <TextField {...params} sx={estilosCalendario} />
+                            )}
+                          />
+                        </LocalizationProvider>
+                      </div>
+                    )}
                   </li>
                 </ul>
               </li>
@@ -1084,7 +1107,7 @@ const Form5 = ({ callback }) => {
           <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
             <div>
               <h1 className="italic text-2xl text-center">
-                Vista previa Parte 4
+                Vista previa Parte 5
               </h1>
               <p>{JSON.stringify("", null, "\t")}</p>
             </div>

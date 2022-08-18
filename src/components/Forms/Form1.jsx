@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import deleteIcon from "../../assets/icons/close.png";
-import addIcon from "../../assets/icons/plus.png";
+import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
+const NUMBER_LIMIT = 1000000000;
+const NUMBER_MIN = 1;
 const Form1 = ({ callback }) => {
+  const form1 = useRef(null);
   const provinciasSierra = [
     "Pichincha",
     "Carchi",
@@ -55,18 +58,22 @@ const Form1 = ({ callback }) => {
   const handleChangeInputs2 = (key, key2, value) =>
     (info[`${key}`][`${key2}`] = value);
   const handleSave = () => {
-    callback({
-      agencias: {
-        locales: {
-          sierra: agenciasSierra,
-          costa: agenciasCosta,
-          oriente: agenciasOriente,
-          insular: agenciasInsular,
+    form1.current.reportValidity();
+    if (form1.current.checkValidity()) {
+      callback({
+        agencias: {
+          locales: {
+            sierra: agenciasSierra,
+            costa: agenciasCosta,
+            oriente: agenciasOriente,
+            insular: agenciasInsular,
+          },
+          internacionales: info.agenciasExterior,
         },
-        internacionales: info.agenciasExterior,
-      },
-      informacionGeneral: info,
-    });
+        informacionGeneral: info,
+      });
+      simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
+    }
   };
   const handlePreview = () => {
     setPreview({
@@ -121,7 +128,7 @@ const Form1 = ({ callback }) => {
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 1. Información de la entidad
         </h1>
-        <form className="flex flex-col gap-1">
+        <form ref={form1} className="flex flex-col gap-1">
           <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="razon_social">
               Razón Social:
@@ -313,8 +320,8 @@ const Form1 = ({ callback }) => {
                               </select>
                               <input
                                 className="bg-slate-900 w-9 text-center outline-none"
-                                min={0}
-                                max={100}
+                                min={NUMBER_MIN}
+                                max={NUMBER_LIMIT}
                                 value={value.cant}
                                 type="number"
                                 onChange={(e) =>
@@ -393,8 +400,8 @@ const Form1 = ({ callback }) => {
                               </select>
                               <input
                                 className="bg-slate-900 w-9 text-center outline-none"
-                                min={0}
-                                max={100}
+                                min={NUMBER_MIN}
+                                max={NUMBER_LIMIT}
                                 value={value.cant}
                                 type="number"
                                 onChange={(e) =>
@@ -473,8 +480,8 @@ const Form1 = ({ callback }) => {
                               </select>
                               <input
                                 className="bg-slate-900 w-9 text-center outline-none"
-                                min={0}
-                                max={100}
+                                min={NUMBER_MIN}
+                                max={NUMBER_LIMIT}
                                 value={value.cant}
                                 type="number"
                                 onChange={(e) =>
@@ -553,8 +560,8 @@ const Form1 = ({ callback }) => {
                               </select>
                               <input
                                 className="bg-slate-900 w-9 text-center outline-none"
-                                min={0}
-                                max={100}
+                                min={NUMBER_MIN}
+                                max={NUMBER_LIMIT}
                                 value={value.cant}
                                 type="number"
                                 onChange={(e) =>
@@ -614,8 +621,8 @@ const Form1 = ({ callback }) => {
                   </label>
                   <input
                     className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
-                    min={0}
-                    max={100}
+                    min={NUMBER_MIN}
+                    max={NUMBER_LIMIT}
                     // value={value.cant}
                     type="number"
                     name="número_agencias_exterior"
@@ -642,7 +649,9 @@ const Form1 = ({ callback }) => {
           </button>
           <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
             <div>
-              <h1 className="italic text-2xl text-center">Vista previa Parte 1</h1>
+              <h1 className="italic text-2xl text-center">
+                Vista previa Parte 1
+              </h1>
               <p>{JSON.stringify(preview, null, "\t")}</p>
             </div>
           </Modal>
