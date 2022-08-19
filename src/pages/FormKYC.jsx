@@ -8,24 +8,31 @@ import { useEffect } from "react";
 import Form3 from "../components/Forms/Form3";
 import Form4 from "../components/Forms/Form4";
 import Form5 from "../components/Forms/Form5";
+import Form6 from "../components/Forms/Form6";
+import FormFiles from "../components/Forms/FormFiles";
 
 const FormKYC = () => {
-  const [dataForm1, setDataForm1] = useState([]);
-  const [dataForm2, setDataForm2] = useState([]);
-  const [dataForm3, setDataForm3] = useState([]);
-  const [dataForm4, setDataForm4] = useState([]);
-  const [dataForm5, setDataForm5] = useState([]);
-  const getDataForm1 = (data) => setDataForm1(data);
-  const getDataForm2 = (data) => setDataForm2(data);
-  const getDataForm3 = (data) => setDataForm3(data);
-  const getDataForm4 = (data) => setDataForm4(data);
-  const getDataForm5 = (data) => setDataForm5(data);
-  useEffect(() => console.log({ dataForm1 }), [dataForm1]);
-  useEffect(() => console.log({ dataForm2 }), [dataForm2]);
-  useEffect(() => console.log({ dataForm3 }), [dataForm3]);
-  useEffect(() => console.log({ dataForm4 }), [dataForm4]);
-  useEffect(() => console.log({ dataForm5 }), [dataForm5]);
+  const [dataForms, setDataForms] = useState({
+    form1: {},
+    form2: {},
+    form3: {},
+    form4: {},
+    form5: {},
+    form6: {},
+    formFiles: {},
+  });
+
+  const getData = (newData, setter, key) => {
+    setter((oldData) => {
+      const temp = { ...oldData }; //guardo el valor anterior de la data
+      console.log(temp);
+      temp[`${key}`] = newData;
+      return temp;
+    });
+  };
+  useEffect(() => console.log({ dataForms }), [dataForms]);
   return (
+    //TODO: a method to delete sub item's values when parent change to false
     <Layout>
       <div className="flex flex-col justify-center bg-slate-800">
         <h1 className="text-slate-200 text-center">
@@ -34,19 +41,29 @@ const FormKYC = () => {
         <Carousel
           carouselItems={[
             <div className="w-4/5 lg:w-[800px] m-auto">
-              <Form1 callback={getDataForm1} />
+              <Form1 getData={getData} setter={setDataForms} i={"form1"} />
             </div>,
             <div className="w-4/5 lg:w-11/12 xl:w-[1100px] 2xl:w-[1200px] m-auto">
-              <Form2 callback={getDataForm2} />
+              <Form2 getData={getData} setter={setDataForms} i={"form2"} />
             </div>,
-            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
-              <Form3 callback={getDataForm3} />
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[420px]">
+              <Form3 getData={getData} setter={setDataForms} i={"form3"} />
             </div>,
-            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
-              <Form4 callback={getDataForm4} />
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[420px]">
+              <Form4 getData={getData} setter={setDataForms} i={"form4"} />
             </div>,
-            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[400px]">
-              <Form5 callback={getDataForm5} />
+            <div className="w-5/6 lg:w-[950px] m-auto  min-h-[420px]">
+              <Form5 getData={getData} setter={setDataForms} i={"form5"} />
+            </div>,
+            <div className="w-5/6 lg:w-[1200px] m-auto  min-h-[420px]">
+              <Form6 getData={getData} setter={setDataForms} i={"form6"} />
+            </div>,
+            <div className="w-5/6 lg:w-[900px] m-auto  min-h-[420px]">
+              <FormFiles
+                getData={getData}
+                setter={setDataForms}
+                i={"formFiles"}
+              />
             </div>,
           ]}
         />

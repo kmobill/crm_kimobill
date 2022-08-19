@@ -65,6 +65,9 @@ const Carousel = ({ carouselItems }) => {
             })}
         </ul>
       </div>
+      <div className={CarouselStyles.selectedSlider}>
+        {selectedSlide+1}
+      </div>
       <div className={CarouselStyles.infoButtons}>
         {carouselItems &&
           carouselItems.map((item, i) => (

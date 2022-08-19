@@ -6,7 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import { estilosCalendario } from "../../utils/constants";
 import simpleAlert from "../../utils/Alerts";
-const Form5 = ({ callback }) => {
+const Form5 = ({ getData, setter, i }) => {
   const [preview, setPreview] = useState({});
   const form5 = useRef(null);
   const preguntas = [
@@ -70,12 +70,12 @@ const Form5 = ({ callback }) => {
     "ONU",
     "PEPs",
     "Personas con Sentencia Condenatoria (Antes Consep)",
-    "OTRAS (Detalle)",
+    "Otras",
   ];
   const handleSave = () => {
     form5.current.reportValidity();
     if (form5.current.checkValidity()) {
-      callback({});
+      getData({}, setter, i);
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
@@ -154,7 +154,7 @@ const Form5 = ({ callback }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      checked = {respuestas[i]}
+                      checked={respuestas[i]}
                       onChange={(e) =>
                         handleChangeArray(
                           e.target.checked,
@@ -200,12 +200,12 @@ const Form5 = ({ callback }) => {
                           className="w-[min(540px,85%)] text-slate-400 mb-2"
                           htmlFor="detalle clientes"
                         >
-                          Detalle las actividades económicas "no aceptadas" (Ej.
-                          Casinos)
+                          Detalle las actividades económicas "no aceptadas"
                         </label>
                         <textarea
                           className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                           value={subRespuestas[i][2.1]}
+                          placeholder="ejem: Casinos"
                           onChange={(e) =>
                             handleChangeArrayObject(
                               e.target.value,
@@ -229,11 +229,12 @@ const Form5 = ({ callback }) => {
                           htmlFor="detalle clientes"
                         >
                           Detalle los tipos de clientes que son sujetos de
-                          procesos de Debidas Diligencias Ampliadas (Ej. PEPs)
+                          procesos de Debidas Diligencias Ampliadas
                         </label>
                         <textarea
                           className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                           value={subRespuestas[i][3.1]}
+                          placeholder="ejem: PEPs"
                           onChange={(e) =>
                             handleChangeArrayObject(
                               e.target.value,
@@ -440,6 +441,7 @@ const Form5 = ({ callback }) => {
                                   name="razon_social"
                                   id="razon_social"
                                   required
+                                  placeholder="Detalle..."
                                   value={subRespuestas[i]["5.3.1"]}
                                   onChange={(e) =>
                                     handleChangeArrayObject(
@@ -496,6 +498,7 @@ const Form5 = ({ callback }) => {
                                 Apellidos y Nombres
                               </label>
                               <input
+                                placeholder="Nombres..."
                                 className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px]  shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="text"
                                 name="nombresPregunta7"
@@ -522,6 +525,7 @@ const Form5 = ({ callback }) => {
                                 C.I.
                               </label>
                               <input
+                                placeholder="111111111-1"
                                 className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
@@ -550,6 +554,7 @@ const Form5 = ({ callback }) => {
                                 Email
                               </label>
                               <input
+                                placeholder="example@example.com"
                                 className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="email"
                                 name="nombresPregunta7"
@@ -576,6 +581,7 @@ const Form5 = ({ callback }) => {
                                 Teléfonos
                               </label>
                               <input
+                                placeholder="2-222-222"
                                 className="no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
@@ -673,6 +679,7 @@ const Form5 = ({ callback }) => {
                                 type="text"
                                 name="nombresPregunta7"
                                 id="activos"
+                                placeholder="Nombres"
                                 value={subRespuestas[i]["7.1.2"]["nombres"]}
                                 onChange={(e) =>
                                   handleChangeArrayObjectObject(
@@ -700,6 +707,7 @@ const Form5 = ({ callback }) => {
                                 name="nombresPregunta7"
                                 id="activos"
                                 min={0}
+                                placeholder="111111111-1"
                                 max={100000000000}
                                 value={subRespuestas[i]["7.1.2"]["CI"]}
                                 onChange={(e) =>
@@ -723,6 +731,7 @@ const Form5 = ({ callback }) => {
                                 Email
                               </label>
                               <input
+                                placeholder="example@example.com"
                                 className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="email"
                                 name="nombresPregunta7"
@@ -749,6 +758,7 @@ const Form5 = ({ callback }) => {
                                 Teléfonos
                               </label>
                               <input
+                                placeholder="2-222-222"
                                 className="no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
@@ -868,6 +878,7 @@ const Form5 = ({ callback }) => {
                             type="text"
                             name="razon_social"
                             id="razon_social"
+                            placeholder="Nombre entidad"
                             required
                             value={subRespuestas[i][9.1]}
                             onChange={(e) =>
@@ -906,16 +917,11 @@ const Form5 = ({ callback }) => {
                       </div>
                     ) : i === 9 ? (
                       <>
-                        <>
-                          <label
-                            className="w-[min(540px,85%)] text-slate-400 mb-2"
-                            htmlFor="detalle clientes"
-                          >
-                            Describa el caso
-                          </label>
+                        <> 
                           <textarea
                             className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                             value={subRespuestas[i][10.1]}
+                            placeholder='Describa...'
                             onChange={(e) =>
                               handleChangeArrayObject(
                                 e.target.value,

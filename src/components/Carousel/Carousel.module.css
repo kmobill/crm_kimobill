@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100%;
   min-height: 400px;
   height: 100%;
@@ -64,20 +64,30 @@
 .carouselButton.next {
   right: 1rem;
 }
-.infoButtons{
+.infoButtons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  cursor: pointer;  
+  cursor: pointer;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   background: none;
   color: white;
 }
-.infoButton{
+.infoButton {
   color: rgba(255, 255, 255, 0.3);
   font-size: 40px;
 }
-.infoButtonActive{
+.infoButtonActive {
   color: rgba(255, 255, 255, 1);
+}
+.selectedSlider {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
 }

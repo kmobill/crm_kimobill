@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
 const NUMBER_MIN = 1;
 const NUMBER_CLIENTS = 5;
-const Form4 = ({ callback }) => {
+const Form4 = ({ getData, setter, i }) => {
   const form4 = useRef(null);
   const [ROISS, setROISS] = useState(0);
   const [riesgoPLA, setRiesgoPLA] = useState(false);
@@ -70,16 +70,20 @@ const Form4 = ({ callback }) => {
     const check = form4.current.checkValidity();
     form4.current.reportValidity();
     if (check) {
-      callback({
-        productosServicios: { productosServicios, transAlertaMonitoreo },
-        baseClientes: {
-          baseClientes,
-          clientesMayorIngreso,
-          riesgoPLA,
-          riesgoPLADetalle,
+      getData(
+        {
+          productosServicios: { productosServicios, transAlertaMonitoreo },
+          baseClientes: {
+            baseClientes,
+            clientesMayorIngreso,
+            riesgoPLA,
+            riesgoPLADetalle,
+          },
+          corresponsales: corresponsales,
         },
-        corresponsales: corresponsales,
-      });
+        setter,
+        i
+      );
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
@@ -916,6 +920,7 @@ const Form4 = ({ callback }) => {
                                 required
                                 className="w-full outline-none px-1 py-[2px] no-arrows bg-slate-300"
                                 type="number"
+                                placeholder="111111111-1"
                                 value={value["CI"]}
                                 onChange={(e) =>
                                   handleChange(
@@ -933,6 +938,7 @@ const Form4 = ({ callback }) => {
                                 required
                                 className="w-full outline-none px-1 py-[2px] no-arrows bg-slate-300"
                                 type="text"
+                                placeholder="Nombre"
                                 value={value["nombreCliente"]}
                                 onChange={(e) =>
                                   handleChange(
@@ -950,6 +956,7 @@ const Form4 = ({ callback }) => {
                                 required
                                 className="w-full outline-none px-1 py-[2px] no-arrows bg-slate-300"
                                 type="text"
+                                placeholder="Actividad"
                                 value={value["actividadPrincipal"]}
                                 onChange={(e) =>
                                   handleChange(
@@ -1299,9 +1306,6 @@ const Form4 = ({ callback }) => {
             </div>
           </Modal>
         </div>
-        <button onClick={() => console.log({ productosServicios })}>
-          show productos
-        </button>
       </section>
     </div>
   );

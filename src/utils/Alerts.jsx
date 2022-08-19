@@ -1,10 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-// import { styleSweetAlert2 } from "../utils/styleComponents";
-import styleSweetAlert2 from "./styleComponents";
 const simpleAlert = (message, typeOfAlert, title) => {
-  console.log(styleSweetAlert2);
-
   const MySwal = withReactContent(Swal);
   MySwal.fire({
     title: <p>{title}</p>,

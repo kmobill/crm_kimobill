@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="bg-slate-800 min-h-screen">
       <Navbar />
       {children}
       <Footer />

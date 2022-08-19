@@ -12,7 +12,7 @@ import simpleAlert from "../../utils/Alerts";
 const NUMBER_LIMIT = 1000000000;
 const NUMBER_MIN = 1;
 
-const Form2 = ({ callback }) => {
+const Form2 = ({ getData, setter, i }) => {
   const form2 = useRef(null);
   const [preview, setPreview] = useState({});
   const [repLegales, setRepLegales] = useState([
@@ -36,10 +36,14 @@ const Form2 = ({ callback }) => {
   const handleSave = () => {
     form2.current.reportValidity();
     if (form2.current.checkValidity()) {
-      callback({
-        repLegales: repLegales,
-        accionistas: accionistas,
-      });
+      getData(
+        {
+          repLegales: repLegales,
+          accionistas: accionistas,
+        },
+        setter,
+        i
+      );
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
@@ -117,6 +121,7 @@ const Form2 = ({ callback }) => {
                                   className="w-full outline-none px-1 py-[2px] no-arrows bg-slate-300"
                                   type="number"
                                   value={value["CI"]}
+                                  placeholder="111111111-1"
                                   onChange={(e) =>
                                     handleChange(
                                       e.target.value,
@@ -134,6 +139,7 @@ const Form2 = ({ callback }) => {
                                   className="w-full outline-none px-1 py-[2px] bg-slate-300"
                                   type="text"
                                   value={value["nombres"]}
+                                  placeholder="Nombre"
                                   onChange={(e) =>
                                     handleChange(
                                       e.target.value,
@@ -147,6 +153,7 @@ const Form2 = ({ callback }) => {
                               </td>
                               <td>
                                 <input
+                                  placeholder="ejem: Ecuatoriana"
                                   required
                                   className="w-full outline-none px-1 py-[2px] bg-slate-300"
                                   type="text"
@@ -305,6 +312,7 @@ const Form2 = ({ callback }) => {
                                   className="w-full outline-none px-1 py-[2px] no-arrows bg-slate-300"
                                   type="number"
                                   value={value["CI"]}
+                                  placeholder="111111111-1"
                                   onChange={(e) =>
                                     handleChange(
                                       e.target.value,
@@ -321,6 +329,7 @@ const Form2 = ({ callback }) => {
                                   required
                                   className="w-full outline-none px-1 py-[2px] bg-slate-300"
                                   type="text"
+                                  placeholder="Nombre"
                                   value={value["nombres"]}
                                   onChange={(e) =>
                                     handleChange(
@@ -336,6 +345,7 @@ const Form2 = ({ callback }) => {
                               <td>
                                 <input
                                   required
+                                  placeholder="ejem: Ecuatoriana"
                                   className="w-full outline-none px-1 py-[2px] bg-slate-300"
                                   type="text"
                                   value={value["nacionalidad"]}

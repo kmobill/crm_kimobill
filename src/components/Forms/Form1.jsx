@@ -5,7 +5,7 @@ import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 1000000000;
 const NUMBER_MIN = 1;
-const Form1 = ({ callback }) => {
+const Form1 = ({ getData, setter, i }) => {
   const form1 = useRef(null);
   const provinciasSierra = [
     "Pichincha",
@@ -55,23 +55,30 @@ const Form1 = ({ callback }) => {
   });
   const [preview, setPreview] = useState({});
   const handleChangeInputs = (key, value) => (info[`${key}`] = value);
-  const handleChangeInputs2 = (key, key2, value) =>
-    (info[`${key}`][`${key2}`] = value);
+  const handleChangeInputs2 = (key, key2, value) => {
+    const temp = { ...info };
+    temp[`${key}`][`${key2}`] = value;
+    setInfo(temp);
+  };
   const handleSave = () => {
     form1.current.reportValidity();
     if (form1.current.checkValidity()) {
-      callback({
-        agencias: {
-          locales: {
-            sierra: agenciasSierra,
-            costa: agenciasCosta,
-            oriente: agenciasOriente,
-            insular: agenciasInsular,
+      getData(
+        {
+          agencias: {
+            locales: {
+              sierra: agenciasSierra,
+              costa: agenciasCosta,
+              oriente: agenciasOriente,
+              insular: agenciasInsular,
+            },
+            internacionales: info.agenciasExterior,
           },
-          internacionales: info.agenciasExterior,
+          informacionGeneral: info,
         },
-        informacionGeneral: info,
-      });
+        setter,
+        i
+      );
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
@@ -138,6 +145,7 @@ const Form1 = ({ callback }) => {
               type="text"
               name="razon_social"
               id="razon_social"
+              placeholder="Razón Social"
               required
               onChange={(e) =>
                 handleChangeInputs("razonSocial", e.target.value)
@@ -153,6 +161,7 @@ const Form1 = ({ callback }) => {
               type="number"
               name="RUC"
               id="RUC"
+              placeholder="RUC"
               required
               onChange={(e) => handleChangeInputs("ruc", e.target.value)}
             />
@@ -166,6 +175,7 @@ const Form1 = ({ callback }) => {
               type="text"
               name="grupo_económico"
               id="grupo_económico"
+              placeholder="Grupo económico"
               required
               onChange={(e) =>
                 handleChangeInputs("grupoEconomico", e.target.value)
@@ -180,6 +190,7 @@ const Form1 = ({ callback }) => {
               Ciudad de Constitución:
             </label>
             <input
+              placeholder="Quito"
               className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="text"
               name="ciudad_constitución"
@@ -199,6 +210,7 @@ const Form1 = ({ callback }) => {
               type="text"
               name="dirección_matriz"
               id="dirección_matriz"
+              placeholder="ejem: Av. calle1 & calle2"
               required
               onChange={(e) =>
                 handleChangeInputs("direccionMatriz", e.target.value)
@@ -212,6 +224,7 @@ const Form1 = ({ callback }) => {
             <input
               className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="number"
+              placeholder="ejem: 3"
               name="años_actividad"
               id="años_actividad"
               required
@@ -230,6 +243,7 @@ const Form1 = ({ callback }) => {
             <input
               className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="number"
+              placeholder="ejem: 3"
               name="número_agencias_locales"
               id="número_agencias_locales"
               required
@@ -246,6 +260,7 @@ const Form1 = ({ callback }) => {
               className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="tel"
               name="telefono"
+              placeholder="ejem: 2-222-222"
               required
               onChange={(e) => handleChangeInputs("telf", e.target.value)}
             />
@@ -258,6 +273,7 @@ const Form1 = ({ callback }) => {
               className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="url"
               name="webpage"
+              placeholder="ejem: https://dominio.com"
               required
               onChange={(e) => handleChangeInputs("paginaWeb", e.target.value)}
             />
@@ -324,6 +340,7 @@ const Form1 = ({ callback }) => {
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
                                 type="number"
+                                placeholder="Quito"
                                 onChange={(e) =>
                                   handleChangeCant(
                                     e,
@@ -403,6 +420,7 @@ const Form1 = ({ callback }) => {
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
+                                placeholder="Quito"
                                 type="number"
                                 onChange={(e) =>
                                   handleChangeCant(
@@ -483,6 +501,7 @@ const Form1 = ({ callback }) => {
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
+                                placeholder="Quito"
                                 type="number"
                                 onChange={(e) =>
                                   handleChangeCant(
@@ -605,7 +624,9 @@ const Form1 = ({ callback }) => {
                     className=" outline-none max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                     type="text"
                     name="agencias_exteriores"
+                    placeholder="ejem: Pais, Ciudad"
                     required
+                    value={info.agenciasExterior.ubicacion}
                     onChange={(e) =>
                       handleChangeInputs2(
                         "agenciasExterior",
@@ -623,9 +644,9 @@ const Form1 = ({ callback }) => {
                     className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                     min={NUMBER_MIN}
                     max={NUMBER_LIMIT}
-                    // value={value.cant}
                     type="number"
                     name="número_agencias_exterior"
+                    value={info.agenciasExterior.cantidad}
                     onChange={(e) =>
                       handleChangeInputs2(
                         "agenciasExterior",

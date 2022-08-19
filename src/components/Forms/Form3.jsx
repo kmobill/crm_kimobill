@@ -3,7 +3,7 @@ import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
 const NUMBER_MIN = 1;
-const Form3 = ({ callback }) => {
+const Form3 = ({ getData, setter, i }) => {
   const form3 = useRef(null);
   const [activos, setActivos] = useState(0);
   const [pasivos, setPasivos] = useState(0);
@@ -18,10 +18,14 @@ const Form3 = ({ callback }) => {
   const handleSave = () => {
     form3.current.reportValidity();
     if (form3.current.checkValidity()) {
-      callback({
-        balanceGeneral: { activos, pasivos, patrimonio },
-        estadoPerdidaGanancias: { ingresos, gastos, utilidadPerdida },
-      });
+      getData(
+        {
+          balanceGeneral: { activos, pasivos, patrimonio },
+          estadoPerdidaGanancias: { ingresos, gastos, utilidadPerdida },
+        },
+        setter,
+        i
+      );
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
