@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
-import addIcon from "../../assets/icons/plus.png";
-import document1 from "../../assets/icons/document1.png";
 import document2 from "../../assets/icons/document2.png";
 
 const FormFiles = ({ getData, setter, i }) => {
   const formFile = useRef(null);
-  const [files, setfiles] = useState({ file1: "", file2: "" });
+  const [files, setfiles] = useState({
+    file1: { name: "", size: "", type: "" },
+    file2: { name: "", size: "", type: "" },
+  });
   const [preview, setPreview] = useState({});
 
   const handleSaveFiles = (value, key) => {
