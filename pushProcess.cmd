@@ -7,4 +7,4 @@ echo "git push made on %mydate%:%mytime%"
 
 git add * 
 git commit -m "%mydate%:%mytime%"
-git push -U origin main
+git push -u origin main
