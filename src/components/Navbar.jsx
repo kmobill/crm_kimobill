@@ -6,7 +6,7 @@ const Navbar = () => {
     navigate(`/${target}`);
   };
   return (
-    <div className="bg-black text-slate-400 fw-bold flex justify-center py-2">
+    <div className="bg-[#05051b] text-slate-400 fw-bold flex justify-center py-2">
       <ul className="flex flex-row justify-around text-center w-3/5 gap-1">
         <li
           onClick={() => handleClick("")}

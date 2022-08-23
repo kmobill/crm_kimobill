@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "gitpush": "git add * && git commit -m '' && git push -u origin main"
+    "gitpush": ".\\pushProcess.cmd"
   },
   "dependencies": {
     "@emotion/styled": "^11.10.0",

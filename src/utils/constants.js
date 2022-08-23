@@ -29,3 +29,15 @@ export const estilosCalendario = {
     color: "#000000",
   },
 };
+export const textWarningLogin = {
+  password: {
+    pattern:
+      "Debe contener al menos un número, letra Mayúscula, letra minúscula y ser mayor a 8 caracteres",
+  },
+  email: {
+    pattern: "El correo debe tener este formato: example@example.com",
+  },
+  general: {
+    empty: "El campo no puede estar vacío",
+  },
+};
