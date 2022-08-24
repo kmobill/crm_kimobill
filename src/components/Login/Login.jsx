@@ -3,12 +3,15 @@ import iconKMB from "../../assets/icons/kmbColor.png";
 import iconKMB2 from "../../assets/icons/kmbWhite.png";
 import simpleAlert from "../../utils/Alerts";
 import { textWarningLogin } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
   const [userName, setuserName] = useState("");
   const [password, setpassword] = useState("");
   const formLogin = useRef(null);
   const inputPass = useRef(null);
-  const inputEmail = useRef(null);
+  const inputEmail = useRef(null); 
 
   const moveLabels = () => {
     const aux = formLogin.current.firstChild;
@@ -24,10 +27,7 @@ const Login = () => {
       });
       input.addEventListener("focusout", () => {
         if (input.value === "") {
-          label.classList.remove(
-            "text-slate-100",
-            "-translate-y-10"
-          );
+          label.classList.remove("text-slate-100", "-translate-y-10");
           label.classList.add("translate-y-0");
         }
       });
@@ -53,19 +53,7 @@ const Login = () => {
       });
   };
   const handleValidity = (input) => {
-    // console.log(input);
-    console.log(textWarningLogin);
     const validityState = input.validity;
-    /* 
-    if (validityState.valueMissing) {
-      input.setCustomValidity(textWarningLogin.general.empty);
-    } else if (validityState.patternMismatch) {
-      if (input.type === "text") {
-        input.setCustomValidity(textWarningLogin.password.pattern);
-      } else if (input.type === "email") {
-        input.setCustomValidity(textWarningLogin.email.pattern);
-      }
-    } */
     if (!input.checkValidity()) {
       if (validityState.patternMismatch) {
         if (input.type === "password") {
@@ -80,23 +68,56 @@ const Login = () => {
     }
   };
 
+  const getValidation = (username = "admin", password = "123") => {
+    fetch("http://localhost:4000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          console.log(" el status es: ", res.status);
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.token) {
+          simpleAlert(`Hola ${userName}`, "success", "¡logeado con exito!");
+          sessionStorage.setItem("token", data.token);
+          navigate("/formulario-kyc");
+        } else {
+          simpleAlert(
+            `Ah ocurrido un error...`,
+            "error",
+            "Usuario o contraseña incorrecta"
+          );
+          sessionStorage.removeItem("token");
+        }
+      });
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (formLogin.current.checkValidity()) {
-      simpleAlert(
-        `username: ${userName} password: ${password}`,
-        "success",
-        "¡Exito!"
-      );
+      getValidation(userName, password);
+      // navigate("/formulario-kyc");
     } else {
       formLogin.current.reportValidity();
     }
   };
 
-  /*  useEffect(
+  useEffect(
     () => console.log(`user: ${userName} password: ${password}`),
     [userName, password]
-  ); */
+  );
 
   return (
     <div className="fw-regular">
@@ -120,7 +141,7 @@ const Login = () => {
                   onKeyUp={() => handleValidity(inputEmail.current)}
                   className="outline-none w-full max-h-6 bg-transparent px-1 border-b-2 border-b-gray-400 text-slate-100"
                   id="name_login"
-                  type="email"
+                  type="text"
                   onChange={(e) => setuserName(e.target.value)}
                   value={userName}
                   required
@@ -136,7 +157,7 @@ const Login = () => {
                 <input
                   ref={inputPass}
                   onKeyUp={() => handleValidity(inputPass.current)}
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="outline-none w-full max-h-6 bg-transparent px-1 border-b-2 border-b-gray-400 text-slate-100"
                   id="password_login"
                   type="password"

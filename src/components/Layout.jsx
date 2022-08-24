@@ -7,6 +7,7 @@ const Layout = ({ children }) => {
     <div className="bg-slate-800 min-h-screen">
       <Navbar />
       <ValidateJWT>{children}</ValidateJWT>
+      {/* {children} */}
       <Footer />
     </div>
   );
