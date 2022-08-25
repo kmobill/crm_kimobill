@@ -12,6 +12,7 @@ import Form6 from "../components/Forms/Form6";
 import FormFiles from "../components/Forms/FormFiles";
 
 const FormKYC = () => {
+  const token_user = sessionStorage.getItem("token");
   const [dataForms, setDataForms] = useState({
     form1: {},
     form2: {},
@@ -30,7 +31,32 @@ const FormKYC = () => {
       return temp;
     });
   };
-  useEffect(() => console.log({ dataForms }), [dataForms]);
+
+  const sendDataForms = (data, token) => {
+    fetch("http://localhost:4000/api/dataForms", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: data,
+        token: token,
+      }),
+    }).then((res) => {
+      if (res.status === 204) {
+        console.log("se actualizo una data previa");
+      } else if (res.status === 202) {
+        console.log("se creo una nueva data");
+      } else {
+        console.log(" el status es: ", res.status);
+      }
+    });
+  };
+  useEffect(() => {
+    sendDataForms(dataForms, token_user);
+    console.log({ token_user });
+    console.log({ dataForms });
+  }, [dataForms]);
   return (
     //TODO: a method to delete sub item's values when parent change to false
     <Layout>
