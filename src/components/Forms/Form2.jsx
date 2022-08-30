@@ -33,6 +33,39 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
       fechaNacimiento: new Date(),
     },
   ]);
+  const handleDataFromDB = (data) => {
+    // console.log("data--------", data);
+    if (data) {
+      setRepLegales(
+        data?.repLegales.length > 0
+          ? data.repLegales
+          : [
+              {
+                CI: "",
+                nombres: "",
+                nacionalidad: "",
+                PEP: 1,
+                fechaNacimiento: new Date(),
+              },
+            ]
+      );
+      setAccionistas(
+        data?.accionistas.length > 0
+          ? data.accionistas
+          : [
+              {
+                CI: "",
+                nombres: "",
+                nacionalidad: "",
+                PEP: 1,
+                fechaNacimiento: new Date(),
+              },
+            ]
+      );
+    }
+  };
+  useEffect(() => handleDataFromDB(dataDB), []);
+
   const handleSave = () => {
     form2.current.reportValidity();
     if (form2.current.checkValidity()) {

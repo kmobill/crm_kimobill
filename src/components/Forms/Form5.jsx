@@ -72,6 +72,13 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
     "Personas con Sentencia Condenatoria (Antes Consep)",
     "Otras",
   ];
+  const handleDataFromDB = (data) => {
+    if (data) {
+      setRespuestas(data?.respuestas);
+      setSubRespuestas(data?.subRespuestas);
+    }
+  };
+  useEffect(() => handleDataFromDB(dataDB), []);
   const handleSave = () => {
     form5.current.reportValidity();
     if (form5.current.checkValidity()) {

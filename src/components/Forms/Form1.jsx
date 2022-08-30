@@ -54,7 +54,37 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
     agenciasExterior: { ubicacion: "", cantidad: "" },
   });
   const [preview, setPreview] = useState({});
-  const handleChangeInputs = (key, value) => (info[`${key}`] = value);
+
+  const handleDataFromDB = (data) => {
+    console.log("2222data", data);
+    if (data) {
+      setAgenciasCosta(data?.agencias?.locales?.costa || []);
+      setAgenciasSierra(data?.agencias?.locales?.sierra || []);
+      setAgenciasOriente(data?.agencias?.locales?.oriente || []);
+      setAgenciasInsultar(data?.agencias?.locales?.insular || []);
+      setInfo({
+        razonSocial: data?.informacionGeneral?.razonSocial,
+        ruc: data?.informacionGeneral?.ruc,
+        grupoEconomico: data?.informacionGeneral?.grupoEconomico,
+        ciudadConstitucion: data?.informacionGeneral?.ciudadConstitucion,
+        direccionMatriz: data?.informacionGeneral?.direccionMatriz,
+        añosActividad: data?.informacionGeneral?.añosActividad,
+        numAgenciasLocales: data?.informacionGeneral?.numAgenciasLocales,
+        telf: data?.informacionGeneral?.telf,
+        paginaWeb: data?.informacionGeneral?.paginaWeb,
+        agenciasExterior: {
+          ubicacion: data?.informacionGeneral?.agenciasExterior?.ubicacion,
+          cantidad: data?.informacionGeneral?.agenciasExterior?.cantidad,
+        },
+      });
+    }
+  };
+
+  const handleChangeInputs = (key, value) => {
+    const temp = { ...info };
+    temp[`${key}`] = value;
+    setInfo(temp);
+  };
   const handleChangeInputs2 = (key, key2, value) => {
     const temp = { ...info };
     temp[`${key}`][`${key2}`] = value;
@@ -127,10 +157,10 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
   };
   useEffect(() => console.log(agenciasSierra), [agenciasSierra]);
   useEffect(() => console.log(agenciasCosta), [agenciasCosta]);
-  useEffect(() => console.log(info), [info]);
-  useEffect(() => console.log(dataDB), [dataDB]);
-
-  // useEffect(()=>dataDB,[])
+  useEffect(() => console.log(agenciasOriente), [agenciasOriente]);
+  useEffect(() => console.log(agenciasInsular), [agenciasInsular]);
+  useEffect(() => console.log({ info }), [info]);
+  useEffect(() => handleDataFromDB(dataDB), []);
 
   return (
     <div className="">
@@ -146,10 +176,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
             <input
               className=" outline-none w-1/2 max-h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="text"
-              name="razon_social"
-              id="razon_social"
               placeholder="Razón Social"
               required
+              value={info.razonSocial}
               onChange={(e) =>
                 handleChangeInputs("razonSocial", e.target.value)
               }
@@ -166,6 +195,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               id="RUC"
               placeholder="RUC"
               required
+              value={info.ruc}
               onChange={(e) => handleChangeInputs("ruc", e.target.value)}
             />
           </div>
@@ -180,6 +210,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               id="grupo_económico"
               placeholder="Grupo económico"
               required
+              value={info.grupoEconomico}
               onChange={(e) =>
                 handleChangeInputs("grupoEconomico", e.target.value)
               }
@@ -193,6 +224,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Ciudad de Constitución:
             </label>
             <input
+              value={info.ciudadConstitucion}
               placeholder="Quito"
               className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="text"
@@ -209,6 +241,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Dirección de la Matriz:
             </label>
             <input
+              value={info.direccionMatriz}
               className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="text"
               name="dirección_matriz"
@@ -225,6 +258,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Años en la actividad:
             </label>
             <input
+              value={info.añosActividad}
               className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="number"
               placeholder="ejem: 3"
@@ -244,6 +278,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Número de agencias locales :
             </label>
             <input
+              value={info.numAgenciasLocales}
               className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="number"
               placeholder="ejem: 3"
@@ -260,6 +295,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Teléfono:
             </label>
             <input
+              value={info.telf}
               className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="tel"
               name="telefono"
@@ -273,6 +309,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               Página Web:
             </label>
             <input
+              value={info.paginaWeb}
               className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
               type="url"
               name="webpage"
@@ -628,8 +665,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                     type="text"
                     name="agencias_exteriores"
                     placeholder="ejem: Pais, Ciudad"
-                    required
-                    value={info.agenciasExterior.ubicacion}
+                    value={info?.agenciasExterior?.ubicacion}
                     onChange={(e) =>
                       handleChangeInputs2(
                         "agenciasExterior",
@@ -644,12 +680,12 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                     Número de agencias:
                   </label>
                   <input
+                    value={info.agenciasExterior.cantidad}
                     className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                     min={NUMBER_MIN}
                     max={NUMBER_LIMIT}
                     type="number"
                     name="número_agencias_exterior"
-                    value={info.agenciasExterior.cantidad}
                     onChange={(e) =>
                       handleChangeInputs2(
                         "agenciasExterior",

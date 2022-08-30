@@ -8,7 +8,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
   const [numPersMediosPago, setNumPersMediosPago] = useState(0);
   const [comentario, setComentario] = useState("");
   const [capacidad, setCapacidad] = useState(true);
-  const [repLegales, setRepLegales] = useState([
+  const [agentesOperativos, setAgentesOperativos] = useState([
     {
       nombres: "",
       rol: "",
@@ -19,12 +19,20 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
     },
   ]);
   const form6 = useRef(null);
+  const handleDataFromDB = (data) => {
+    if (data) {
+      setNumPersMediosPago(data.numPersMediosPago);
+      setComentario(data.comentario);
+      setAgentesOperativos(data.agentesOperativos);
+    }
+  };
+  useEffect(() => handleDataFromDB(dataDB), []);
   const handleSave = () => {
     form6.current.reportValidity();
     if (form6.current.checkValidity()) {
       getData(
         {
-          agentesOperativos: repLegales,
+          agentesOperativos: agentesOperativos,
           comentario: comentario,
           numPersMediosPago: numPersMediosPago,
         },
@@ -36,7 +44,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
   };
   const handlePreview = () => {
     setPreview({
-      agentesOperativos: repLegales,
+      agentesOperativos: agentesOperativos,
       comentario: comentario,
       numPersMediosPago: numPersMediosPago,
     });
@@ -58,7 +66,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
     setfunction(temp);
   };
 
-  useEffect(() => console.log(repLegales), [repLegales]);
+  useEffect(() => console.log(agentesOperativos), [agentesOperativos]);
   useEffect(() => console.log(capacidad), [capacidad]);
   useEffect(() => console.log(comentario), [comentario]);
   useEffect(() => console.log(dataDB), [dataDB]);
@@ -86,8 +94,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                 <li className=" bg-sky-800">Nivel Responsabilidad</li>
               </ul>
               <ul className="w-full flex flex-col gap-1 ">
-                {repLegales &&
-                  repLegales.map((value, i) => {
+                {agentesOperativos &&
+                  agentesOperativos.map((value, i) => {
                     return (
                       <li
                         className="flex flex-col border-[1px] p-2 rounded-md md:p-0 md:border-0 md:rounded-none"
@@ -121,8 +129,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "nombres"
                                 )
                               }
@@ -143,8 +151,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "rol"
                                 )
                               }
@@ -164,8 +172,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "email"
                                 )
                               }
@@ -186,8 +194,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "telf"
                                 )
                               }
@@ -207,8 +215,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "porcentAsignancion"
                                 )
                               }
@@ -225,8 +233,8 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                                 handleChange(
                                   e.target.value,
                                   i,
-                                  setRepLegales,
-                                  repLegales,
+                                  setAgentesOperativos,
+                                  agentesOperativos,
                                   "nivelResponsabilidad"
                                 )
                               }
@@ -243,14 +251,22 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                               className="h-6 cursor-pointer hover:scale-105 duration-150 ease-in-out"
                               src={deleteIcon}
                               onClick={() =>
-                                handleDelete(i, setRepLegales, repLegales)
+                                handleDelete(
+                                  i,
+                                  setAgentesOperativos,
+                                  agentesOperativos
+                                )
                               }
                             />
                           </div>
                         </section>
                         <div
                           onClick={() =>
-                            handleDelete(i, setRepLegales, repLegales)
+                            handleDelete(
+                              i,
+                              setAgentesOperativos,
+                              agentesOperativos
+                            )
                           }
                           className="md:hidden flex flex-row justify-center mt-2"
                         >
@@ -265,7 +281,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
               </ul>
               <div
                 onClick={() =>
-                  handleAdd(repLegales, setRepLegales, [
+                  handleAdd(agentesOperativos, setAgentesOperativos, [
                     {
                       nombres: "",
                       rol: "",

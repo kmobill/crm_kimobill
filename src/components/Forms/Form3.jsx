@@ -14,6 +14,18 @@ const Form3 = ({ getData, setter, i, dataDB }) => {
   const [utilidadPerdida, setUtilidadPerdida] = useState(0);
 
   const [preview, setPreview] = useState({});
+  const handleDataFromDB = (data) => {
+    // console.log("data--------", data);
+    if (data) {
+      setActivos(data?.balanceGeneral?.activos || 0);
+      setPasivos(data?.balanceGeneral?.pasivos || 0);
+      setPatrimonio(data?.balanceGeneral?.patrimonio || 0);
+      setIngresos(data?.estadoPerdidaGanancias?.ingresos || 0);
+      setGastos(data?.estadoPerdidaGanancias?.gastos || 0);
+      setUtilidadPerdida(data?.estadoPerdidaGanancias?.utilidadPerdida || 0);
+    }
+  };
+  useEffect(() => handleDataFromDB(dataDB), []);
 
   const handleSave = () => {
     form3.current.reportValidity();

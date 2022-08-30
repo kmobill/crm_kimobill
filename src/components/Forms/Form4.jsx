@@ -35,7 +35,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
     compensacionChequesExterior: false,
     custodia: false,
     cuentasEnOtrasEntidadesFinancieras: false,
-    tipoEntidad: "localtest",
+    tipoEntidad: "local",
   });
   const [baseClientes, setBaseClientes] = useState({
     numTotalClientes: 0,
@@ -66,6 +66,20 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
   );
 
   const [preview, setPreview] = useState({});
+
+  const handleDataFromDB = (data) => {
+    if (data) {
+      setProductosServicios(data?.productosServicios?.productosServicios);
+      setTransAlertaMonitoreo(data?.productosServicios?.transAlertaMonitoreo);
+      setCorresponsales(data?.corresponsales);
+
+      setBaseClientes(data?.baseClientes?.baseClientes);
+      setClientesMayorIngreso(data?.baseClientes?.clientesMayorIngreso);
+      setRiesgoPLA(data?.baseClientes?.riesgoPLA);
+      setRiesgoPLADetalle(data?.baseClientes?.riesgoPLADetalle);
+    }
+  };
+  useEffect(() => handleDataFromDB(dataDB), []);
   const handleSave = () => {
     const check = form4.current.checkValidity();
     form4.current.reportValidity();
