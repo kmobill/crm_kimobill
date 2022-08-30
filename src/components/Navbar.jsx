@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import iconKMB from "../assets/icons/kmbColor.png";
+import iconKMB2 from "../assets/icons/kmbWhite.png";
 const Navbar = () => {
   const [userinfo, setuserinfo] = useState({});
   let navigate = useNavigate();
@@ -39,14 +41,14 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#05051b] text-slate-400 fw-bold flex justify-center py-2">
-      <ul className="flex flex-row justify-around text-center w-3/5 gap-1">
+      <ul className="flex flex-row justify-center text-center w-3/5 gap-5">
         <li
-          onClick={() => handleClick("")}
-          className="cursor-pointer bg-slate-800 px-5 rounded-md w-1/3"
+          onClick={() => handleClick("formulario-kyc")}
+          className="cursor-pointer bg-slate-800 px-5 rounded-md w-[min(200px,30%)] flex justify-center items-center flex-col"
         >
-          Home
+          <img className="h-5/6" src={iconKMB2} alt="kmb icon" />
         </li>
-        <li
+        {/* <li
           onClick={() => handleClick("")}
           className="cursor-pointer bg-slate-800 px-5 rounded-md w-1/3"
         >
@@ -63,22 +65,23 @@ const Navbar = () => {
           className="cursor-pointer bg-slate-800 px-5 rounded-md w-1/3"
         >
           test
+        </li> */}
+
+        <li className="cursor-pointer bg-slate-900 px-5 rounded-md  flex justify-center items-center flex-col">
+          {userinfo && (
+            <>
+              {/* <h1>{userinfo.id}</h1> */}
+              <h1>{userinfo.email}</h1>
+              <h1>{userinfo.username}</h1>
+              {/* <h1>{userinfo.rol}</h1> */}
+            </>
+          )}
         </li>
         <li
           onClick={() => handleLogOut()}
-          className="cursor-pointer bg-slate-800 px-5 rounded-md w-1/3"
+          className="cursor-pointer bg-slate-800 px-5 rounded-md w-[min(200px,30%)] flex justify-center items-center flex-col"
         >
           logOut
-        </li>
-        <li className="cursor-pointer bg-slate-900 px-5 rounded-full w-1/3">
-          {userinfo && (
-            <>
-              <h1>{userinfo.id}</h1>
-              <h1>{userinfo.email}</h1>
-              <h1>{userinfo.username}</h1>
-              <h1>{userinfo.rol}</h1>
-            </>
-          )}
         </li>
       </ul>
     </div>

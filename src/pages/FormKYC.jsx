@@ -64,6 +64,7 @@ const FormKYC = () => {
       .catch((err) => console.log(err));
   };
   const sendDataForms = (data, token, files = null) => {
+    console.log("33333333333data", data);
     fetch("http://localhost:4000/api/dataForms", {
       method: "PUT",
       headers: {
@@ -75,10 +76,10 @@ const FormKYC = () => {
         files: files,
       }),
     }).then((res) => {
-      if (res.status === 204) {
+      if (res.status === 200) {
         getDataForms(token_user); //para obtener la data del backend
         console.log("se actualizo una data previa");
-      } else if (res.status === 202) {
+      } else if (res.status === 201) {
         getDataForms(token_user); //para obtener la data del backend
         console.log("se creo una nueva data");
       } else {

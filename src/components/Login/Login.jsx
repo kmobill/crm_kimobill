@@ -11,16 +11,13 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const formLogin = useRef(null);
   const inputPass = useRef(null);
-  const inputEmail = useRef(null); 
+  const inputEmail = useRef(null);
 
   const moveLabels = () => {
     const aux = formLogin.current.firstChild;
     for (const aux1 of aux.children) {
       const label = aux1.firstChild;
       const input = aux1.childNodes[1];
-      // console.log(input.type);
-
-      // console.log("777", input.nodeName);
       input.addEventListener("focusin", () => {
         label.classList.add("text-slate-100", "-translate-y-10");
         label.classList.remove("translate-y-0");
@@ -157,7 +154,7 @@ const Login = () => {
                 <input
                   ref={inputPass}
                   onKeyUp={() => handleValidity(inputPass.current)}
-                  // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="outline-none w-full max-h-6 bg-transparent px-1 border-b-2 border-b-gray-400 text-slate-100"
                   id="password_login"
                   type="password"

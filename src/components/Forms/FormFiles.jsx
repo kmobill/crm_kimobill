@@ -51,9 +51,6 @@ const FormFiles = ({ callbackfiles, setter, dataDB }) => {
 
   return (
     <div className="fw-regular">
-      <div>
-        <button onClick={() => console.log(files)}>show files</button>
-      </div>
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 7. Carga de Archivos de respaldo
