@@ -3,37 +3,31 @@ import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 import document2 from "../../assets/icons/document2.png";
 
-const FormFiles = ({ getData, setter, i }) => {
+const FormFiles = ({ callbackfiles, setter, dataDB }) => {
   const formFile = useRef(null);
-  const [files, setfiles] = useState({
-    file1: { name: "", size: "", type: "" },
-    file2: { name: "", size: "", type: "" },
-  });
+  const [files, setfiles] = useState([]);
   const [preview, setPreview] = useState({});
 
   const handleSaveFiles = (value, key) => {
-    const temp = { ...files };
-    temp[`${key}`] = value;
-    console.log(temp);
+    const formData = new FormData();
+    formData.append(`file-${key}`, value);
+    const temp = [...files];
+    temp[key] = value;
+    console.log("fileeeeeeeeeeeeeeeeeeeeee", formData.getAll(`file-${key}`));
+    console.log("fileeeeeeeeeeeeeeeeeeeeee2", temp[key]);
     setfiles(temp);
   };
 
   const handleSave = () => {
     formFile.current.reportValidity();
     if (formFile.current.checkValidity()) {
-      getData(
-        {
-          files: files,
-        },
-        setter,
-        i
-      );
+      callbackfiles(files, setter);
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
   const handlePreview = () => {
     setPreview({
-      file1: {
+      /* file1: {
         lastModifiedDate: files.file1.lastModifiedDate,
         name: files.file1.name,
         size: files.file1.size,
@@ -44,13 +38,22 @@ const FormFiles = ({ getData, setter, i }) => {
         name: files.file2.name,
         size: files.file2.size,
         type: files.file2.type,
-      },
+      }, */
     });
   };
-  useEffect(() => console.log({ files }), [files]);
+  useEffect(() => {
+    console.log("cambio en files");
+    for (const value of files.values()) {
+      console.log(value);
+    }
+  }, [files]);
+  useEffect(() => console.log(dataDB), [dataDB]);
 
   return (
     <div className="fw-regular">
+      <div>
+        <button onClick={() => console.log(files)}>show files</button>
+      </div>
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <h1 className="text-slate-300 text-center italic text-lg">
           Parte 7. Carga de Archivos de respaldo
@@ -72,7 +75,7 @@ const FormFiles = ({ getData, setter, i }) => {
                 className="hidden"
                 id="inputCalificacionUAFE"
                 type="file"
-                onChange={(e) => handleSaveFiles(e.target.files[0], "file1")}
+                onChange={(e) => handleSaveFiles(e.target.files[0], 0)}
                 // accept="image/png, image/jpeg"
                 required
               />
@@ -91,7 +94,7 @@ const FormFiles = ({ getData, setter, i }) => {
                 className="hidden"
                 id="inputCumplimientoUAFE"
                 type="file"
-                onChange={(e) => handleSaveFiles(e.target.files[0], "file2")}
+                onChange={(e) => handleSaveFiles(e.target.files[0], 1)}
                 // accept="image/png, image/jpeg"
                 required
               />

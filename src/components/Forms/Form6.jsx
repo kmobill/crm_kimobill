@@ -3,7 +3,7 @@ import deleteIcon from "../../assets/icons/close.png";
 import addIcon from "../../assets/icons/plus.png";
 import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
-const Form6 = ({ getData, setter, i }) => {
+const Form6 = ({ getData, setter, i, dataDB }) => {
   const [preview, setPreview] = useState({});
   const [numPersMediosPago, setNumPersMediosPago] = useState(0);
   const [comentario, setComentario] = useState("");
@@ -61,6 +61,8 @@ const Form6 = ({ getData, setter, i }) => {
   useEffect(() => console.log(repLegales), [repLegales]);
   useEffect(() => console.log(capacidad), [capacidad]);
   useEffect(() => console.log(comentario), [comentario]);
+  useEffect(() => console.log(dataDB), [dataDB]);
+
   return (
     <div className="fw-regular">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">

@@ -3,7 +3,7 @@ import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
 const NUMBER_MIN = 1;
-const Form3 = ({ getData, setter, i }) => {
+const Form3 = ({ getData, setter, i, dataDB }) => {
   const form3 = useRef(null);
   const [activos, setActivos] = useState(0);
   const [pasivos, setPasivos] = useState(0);
@@ -42,6 +42,7 @@ const Form3 = ({ getData, setter, i }) => {
   useEffect(() => {
     setUtilidadPerdida(ingresos - gastos);
   }, [ingresos, gastos]);
+  useEffect(() => console.log(dataDB), [dataDB]);
 
   /* useEffect(() => {
     setBalanceGeneral((old) => ({

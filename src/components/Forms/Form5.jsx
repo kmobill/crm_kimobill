@@ -6,7 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import { estilosCalendario } from "../../utils/constants";
 import simpleAlert from "../../utils/Alerts";
-const Form5 = ({ getData, setter, i }) => {
+const Form5 = ({ getData, setter, i, dataDB }) => {
   const [preview, setPreview] = useState({});
   const form5 = useRef(null);
   const preguntas = [
@@ -75,7 +75,7 @@ const Form5 = ({ getData, setter, i }) => {
   const handleSave = () => {
     form5.current.reportValidity();
     if (form5.current.checkValidity()) {
-      getData({}, setter, i);
+      getData({ preguntas, respuestas, subRespuestas }, setter, i);
       simpleAlert("¡Se ha guardado correctamente!", "success", "¡Exito!");
     }
   };
@@ -130,6 +130,7 @@ const Form5 = ({ getData, setter, i }) => {
   useEffect(() => console.log("render"));
   useEffect(() => console.log(respuestas), [respuestas]);
   useEffect(() => console.log("sub", subRespuestas), [subRespuestas]);
+  useEffect(() => console.log(dataDB), [dataDB]);
 
   return (
     <div className="fw-regular">
@@ -917,11 +918,11 @@ const Form5 = ({ getData, setter, i }) => {
                       </div>
                     ) : i === 9 ? (
                       <>
-                        <> 
+                        <>
                           <textarea
                             className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                             value={subRespuestas[i][10.1]}
-                            placeholder='Describa...'
+                            placeholder="Describa..."
                             onChange={(e) =>
                               handleChangeArrayObject(
                                 e.target.value,

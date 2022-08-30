@@ -12,7 +12,7 @@ import simpleAlert from "../../utils/Alerts";
 const NUMBER_LIMIT = 1000000000;
 const NUMBER_MIN = 1;
 
-const Form2 = ({ getData, setter, i }) => {
+const Form2 = ({ getData, setter, i, dataDB }) => {
   const form2 = useRef(null);
   const [preview, setPreview] = useState({});
   const [repLegales, setRepLegales] = useState([
@@ -72,6 +72,7 @@ const Form2 = ({ getData, setter, i }) => {
 
   useEffect(() => console.log(repLegales), [repLegales]);
   useEffect(() => console.log(accionistas), [accionistas]);
+  useEffect(() => console.log(dataDB), [dataDB]);
 
   return (
     <div className="">

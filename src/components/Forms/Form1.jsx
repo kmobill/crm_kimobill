@@ -5,7 +5,7 @@ import simpleAlert from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 1000000000;
 const NUMBER_MIN = 1;
-const Form1 = ({ getData, setter, i }) => {
+const Form1 = ({ getData, setter, i, dataDB }) => {
   const form1 = useRef(null);
   const provinciasSierra = [
     "Pichincha",
@@ -128,6 +128,9 @@ const Form1 = ({ getData, setter, i }) => {
   useEffect(() => console.log(agenciasSierra), [agenciasSierra]);
   useEffect(() => console.log(agenciasCosta), [agenciasCosta]);
   useEffect(() => console.log(info), [info]);
+  useEffect(() => console.log(dataDB), [dataDB]);
+
+  // useEffect(()=>dataDB,[])
 
   return (
     <div className="">

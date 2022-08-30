@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal";
 const NUMBER_LIMIT = 100000;
 const NUMBER_MIN = 1;
 const NUMBER_CLIENTS = 5;
-const Form4 = ({ getData, setter, i }) => {
+const Form4 = ({ getData, setter, i, dataDB }) => {
   const form4 = useRef(null);
   const [ROISS, setROISS] = useState(0);
   const [riesgoPLA, setRiesgoPLA] = useState(false);
@@ -69,6 +69,9 @@ const Form4 = ({ getData, setter, i }) => {
   const handleSave = () => {
     const check = form4.current.checkValidity();
     form4.current.reportValidity();
+    console.log(form4.current.reportValidity());
+    console.log(form4.current.checkValidity());
+
     if (check) {
       getData(
         {
@@ -120,6 +123,8 @@ const Form4 = ({ getData, setter, i }) => {
   useEffect(() => console.log({ baseClientes }), [baseClientes]);
   useEffect(() => console.log({ corresponsales }), [corresponsales]); */
   useEffect(() => console.log({ menusOpen }), [menusOpen]);
+  useEffect(() => console.log(dataDB), [dataDB]);
+
   /*  useEffect(
     () => console.log({ transAlertaMonitoreo }),
     [transAlertaMonitoreo]
@@ -198,7 +203,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.bancaElect}
                       onChange={(e) =>
                         handleChange2(
@@ -219,7 +223,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.inversionesDerivados}
                       onChange={(e) =>
                         handleChange2(
@@ -240,7 +243,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.remesas}
                       onChange={(e) =>
                         handleChange2(
@@ -261,7 +263,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.transfExt}
                       onChange={(e) =>
                         handleChange2(
@@ -282,7 +283,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.emisionChequesExt}
                       onChange={(e) =>
                         handleChange2(
@@ -303,7 +303,6 @@ const Form4 = ({ getData, setter, i }) => {
                       type="checkbox"
                       name="activos"
                       id="activos"
-                      required
                       checked={productosServicios.transValores}
                       onChange={(e) =>
                         handleChange2(
@@ -1163,7 +1162,6 @@ const Form4 = ({ getData, setter, i }) => {
                           type="checkbox"
                           name="activos"
                           id="activos"
-                          required
                           // value={activos}
                           checked={corresponsales.cuentasDeposito}
                           onChange={(e) =>
