@@ -27,21 +27,22 @@ const FormFiles = ({ callbackfiles, setter, dataDB }) => {
   };
   const handlePreview = () => {
     setPreview({
-      /* file1: {
-        lastModifiedDate: files.file1.lastModifiedDate,
-        name: files.file1.name,
-        size: files.file1.size,
-        type: files.file1.type,
+      file1: {
+        lastModifiedDate: files[0].lastModifiedDate,
+        name: files[0].name,
+        size: files[0].size,
+        type: files[0].type,
       },
       file2: {
-        lastModifiedDate: files.file2.lastModifiedDate,
-        name: files.file2.name,
-        size: files.file2.size,
-        type: files.file2.type,
-      }, */
+        lastModifiedDate: files[1].lastModifiedDate,
+        name: files[1].name,
+        size: files[1].size,
+        type: files[1].type,
+      },
     });
   };
   useEffect(() => {
+    console.log(files);
     console.log("cambio en files");
     for (const value of files.values()) {
       console.log(value);

@@ -33,7 +33,7 @@ const FormKYC = () => {
   };
   const getDataForms = (token) => {
     setLoading(true);
-    fetch("http://localhost:4000/api/dataForms", {
+    fetch("/api/dataForms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,8 +64,7 @@ const FormKYC = () => {
       .catch((err) => console.log(err));
   };
   const sendDataForms = (data, token, files = null) => {
-    console.log("33333333333data", data);
-    fetch("http://localhost:4000/api/dataForms", {
+    fetch("/api/dataForms", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -17,7 +17,7 @@ const Navbar = () => {
   };
   useEffect(() => {
     const token_user = sessionStorage.getItem("token");
-    fetch("http://localhost:4000/api/userinfo", {
+    fetch("/api/userinfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,12 +41,12 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#05051b] text-slate-400 fw-bold flex justify-center py-2">
-      <ul className="flex flex-row justify-center text-center w-3/5 gap-5">
+      <ul className="flex flex-row justify-center text-center w-3/5 gap-5 text-xl">
         <li
           onClick={() => handleClick("formulario-kyc")}
           className="cursor-pointer bg-slate-800 px-5 rounded-md w-[min(200px,30%)] flex justify-center items-center flex-col"
         >
-          <img className="h-5/6" src={iconKMB2} alt="kmb icon" />
+          <img className="h-4/6" src={iconKMB2} alt="kmb icon" />
         </li>
         {/* <li
           onClick={() => handleClick("")}

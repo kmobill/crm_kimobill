@@ -33,22 +33,6 @@ const Login = () => {
   useEffect(() => {
     moveLabels();
   }, []);
-
-  const getNotes = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:3001/api/notes")
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("Ok!");
-          return res.json();
-        } else {
-          console.log("error");
-        }
-      })
-      .then((notes) => {
-        console.log("data obtenida: ", notes);
-      });
-  };
   const handleValidity = (input) => {
     const validityState = input.validity;
     if (!input.checkValidity()) {
@@ -66,7 +50,7 @@ const Login = () => {
   };
 
   const getValidation = (username = "admin", password = "123") => {
-    fetch("http://localhost:4000/api/userAuth", {
+    fetch("/api/userAuth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -154,7 +138,7 @@ const Login = () => {
                 <input
                   ref={inputPass}
                   onKeyUp={() => handleValidity(inputPass.current)}
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="outline-none w-full max-h-6 bg-transparent px-1 border-b-2 border-b-gray-400 text-slate-100"
                   id="password_login"
                   type="password"
@@ -175,7 +159,7 @@ const Login = () => {
                 ¿No tiene Cuenta?{" "}
                 <a
                   className="fw-bold hover:text-slate-700 duration-300"
-                  href=""
+                  href="/login"
                 >
                   ¡Registrese!
                 </a>

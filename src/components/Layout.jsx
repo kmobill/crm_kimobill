@@ -7,7 +7,6 @@ const Layout = ({ children }) => {
     <div className="bg-slate-800 min-h-screen flex flex-col justify-between">
       <Navbar />
       <ValidateJWT>{children}</ValidateJWT>
-      {/* {children} */}
       <Footer />
     </div>
   );
