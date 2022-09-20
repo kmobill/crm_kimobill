@@ -33,7 +33,7 @@ const FormKYC = () => {
   };
   const getDataForms = (token) => {
     setLoading(true);
-    fetch("/api/dataForms", {
+    fetch("api/dataForms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,8 +106,8 @@ const FormKYC = () => {
   return (
     //TODO: a method to delete sub item's values when parent change to false
     <Layout>
-      <div className="flex flex-col justify-center bg-slate-800">
-        <h1 className="text-slate-200 text-center">CUESTIONARIO</h1>
+      <div className="flex flex-col justify-center">
+        <h1 className="text-slate-900 text-center text-4xl mt-4">CUESTIONARIO</h1>
         {loading ? (
           <div>Cargando...</div>
         ) : (

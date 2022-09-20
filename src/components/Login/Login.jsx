@@ -50,6 +50,7 @@ const Login = () => {
   };
 
   const getValidation = (username = "admin", password = "123") => {
+    // fetch("/api/userAuth", {
     fetch("/api/userAuth", {
       method: "POST",
       headers: {

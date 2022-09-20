@@ -164,17 +164,17 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
 
   return (
     <div className="">
-      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-300 text-center italic text-lg">
+      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+        <h1 className="text-[#2b2b2b] text-center  text-xl font-bold">
           Parte 1. Información de la entidad
         </h1>
         <form ref={form1} className="flex flex-col gap-1">
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="razon_social">
               Razón Social:
             </label>
             <input
-              className=" outline-none w-1/2 max-h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="text"
               placeholder="Razón Social"
               required
@@ -184,12 +184,12 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="RUC">
               RUC:
             </label>
             <input
-              className="no-arrows outline-none w-1/2  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="no-arrows outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="number"
               name="RUC"
               id="RUC"
@@ -199,12 +199,14 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               onChange={(e) => handleChangeInputs("ruc", e.target.value)}
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="grupo_económico">
               Grupo económico:
             </label>
             <input
-              className=" outline-none w-1/2 max-h-6   bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className=" outline-none w-1/2 max-h-6   bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="text"
               name="grupo_económico"
               id="grupo_económico"
@@ -216,7 +218,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label
               className="w-1/2 max-w-[200px]"
               htmlFor="ciudad_constitución"
@@ -226,7 +228,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
             <input
               value={info.ciudadConstitucion}
               placeholder="Quito"
-              className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="text"
               name="ciudad_constitución"
               id="ciudad_constitución"
@@ -236,13 +240,15 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="dirección_matriz">
               Dirección de la Matriz:
             </label>
             <input
               value={info.direccionMatriz}
-              className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className=" outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="text"
               name="dirección_matriz"
               id="dirección_matriz"
@@ -253,13 +259,15 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="años_actividad">
               Años en la actividad:
             </label>
             <input
               value={info.añosActividad}
-              className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="no-arrows outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="number"
               placeholder="ejem: 3"
               name="años_actividad"
@@ -270,7 +278,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 rounded-md items-center">
             <label
               className="w-1/2 max-w-[200px]"
               htmlFor="número_agencias_locales"
@@ -279,7 +287,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
             </label>
             <input
               value={info.numAgenciasLocales}
-              className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="no-arrows outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className="no-arrows outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="number"
               placeholder="ejem: 3"
               name="número_agencias_locales"
@@ -290,13 +300,15 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               }
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="telefono">
               Teléfono:
             </label>
             <input
               value={info.telf}
-              className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+              "
+              // className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="tel"
               name="telefono"
               placeholder="ejem: 2-222-222"
@@ -304,13 +316,13 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               onChange={(e) => handleChangeInputs("telf", e.target.value)}
             />
           </div>
-          <div className="p-1 gap-1 flex flex-row justify-center text-slate-100 items-center">
+          <div className="p-1 gap-1 flex flex-row justify-center text-slate-700 items-center">
             <label className="w-1/2 max-w-[200px]" htmlFor="webpage">
               Página Web:
             </label>
             <input
               value={info.paginaWeb}
-              className="outline-none w-1/2 max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+              className="outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-700"
               type="url"
               name="webpage"
               placeholder="ejem: https://dominio.com"
@@ -321,7 +333,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
           <div className="">
             <section className="py-3 px-2">
               <div className="flex flex-col justify-center text-slate-300 gap-2">
-                <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
+                <h1 className="text-slate-900 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-xl text-center self-center">
                   Número de agencias por ubicación (click en la región)
                 </h1>
                 <ul className="grid  grid-cols-1 sm:grid-cols-2 text-center gap-2 text-slate-300">
@@ -334,7 +346,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                           provinciasSierra
                         )
                       }
-                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-[#41b1e9] text-slate-100 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Sierra
                     </h1>
@@ -348,7 +360,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                             >
                               <select
                                 value={value.provincia}
-                                className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
+                                className=" text-slate-900  rounded-sm outline-none cursor-pointer w-full"
                                 onChange={(e) =>
                                   handleChange(
                                     e,
@@ -358,7 +370,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                   )
                                 }
                               >
-                                <option className="bg-slate-700" key={i}>
+                                <option className="" key={i}>
                                   {value.provincia}
                                 </option>
                                 {provinciasSierra.map((provSierra, i) => {
@@ -368,14 +380,14 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                     ) === undefined
                                   )
                                     return (
-                                      <option className="bg-slate-700" key={i}>
+                                      <option className="" key={i}>
                                         {provSierra}
                                       </option>
                                     );
                                 })}
                               </select>
                               <input
-                                className="bg-slate-900 w-9 text-center outline-none"
+                                className="border-[1px] border-[#0979af] text-slate-800 w-9 text-center outline-none"
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
@@ -415,7 +427,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                           provinciasCosta
                         )
                       }
-                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-[#41b1e9] text-slate-100 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Costa
                     </h1>
@@ -429,7 +441,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                             >
                               <select
                                 value={value.provincia}
-                                className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
+                                className="text-slate-900  outline-none cursor-pointer w-full"
                                 onChange={(e) =>
                                   handleChange(
                                     e,
@@ -439,7 +451,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                   )
                                 }
                               >
-                                <option className="bg-slate-700" key={i}>
+                                <option className="" key={i}>
                                   {value.provincia}
                                 </option>
                                 {provinciasCosta.map((prov, i) => {
@@ -449,14 +461,14 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                     ) === undefined
                                   )
                                     return (
-                                      <option className="bg-slate-700" key={i}>
+                                      <option className="" key={i}>
                                         {prov}
                                       </option>
                                     );
                                 })}
                               </select>
                               <input
-                                className="bg-slate-900 w-9 text-center outline-none"
+                                className="border-[1px] border-[#0979af] text-slate-800 w-9 text-center outline-none"
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
@@ -496,7 +508,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                           provinciasOriente
                         )
                       }
-                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-[#41b1e9] text-slate-100 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Oriente
                     </h1>
@@ -510,7 +522,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                             >
                               <select
                                 value={value.provincia}
-                                className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
+                                
+                                className="text-slate-900  outline-none cursor-pointer w-full"
+                                // className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
                                 onChange={(e) =>
                                   handleChange(
                                     e,
@@ -537,7 +551,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                 })}
                               </select>
                               <input
-                                className="bg-slate-900 w-9 text-center outline-none"
+                                className="border-[1px] border-[#0979af] text-slate-800 w-9 text-center outline-none"
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
@@ -577,7 +591,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                           provinciasInsular
                         )
                       }
-                      className="w-[min(250px,100%)] bg-slate-600 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
+                      className="w-[min(250px,100%)] bg-[#41b1e9] text-slate-100 cursor-pointer rounded-sm hover:scale-[1.02] duration-150 ease-in-out"
                     >
                       Insular
                     </h1>
@@ -591,7 +605,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                             >
                               <select
                                 value={value.provincia}
-                                className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
+                                className="text-slate-900  outline-none cursor-pointer w-full"
+
+                                // className=" bg-slate-600 rounded-sm outline-none cursor-pointer w-full"
                                 onChange={(e) =>
                                   handleChange(
                                     e,
@@ -618,7 +634,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                                 })}
                               </select>
                               <input
-                                className="bg-slate-900 w-9 text-center outline-none"
+                                className="border-[1px] border-[#0979af] text-slate-800 w-9 text-center outline-none"
                                 min={NUMBER_MIN}
                                 max={NUMBER_LIMIT}
                                 value={value.cant}
@@ -652,8 +668,8 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
               </div>
             </section>
             <section className="flex flex-col gap-4">
-              <h1 className="text-slate-900 bg-slate-500 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
-                Agencias en el exterior
+              <h1 className="text-slate-900 px-4 py-1 fw-bold rounded-sm w-[min(90%,700px)] text-center text-xl self-center">
+                Numero de Agencias en el exterior
               </h1>
               <div className="flex flex-col md:flex-row w-full md:justify-center gap-4 md:gap-10 items-center text-slate-100 p-1">
                 <div className="flex flex-col sm:flex-row gap-2 items-center">
@@ -661,7 +677,9 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                     Ubicación Agencia:
                   </label>
                   <input
-                    className=" outline-none max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                   className="text-slate-700 outline-none w-1/2 max-h-6  border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]
+                   "
+                    // className=" outline-none max-h-6  bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
                     type="text"
                     name="agencias_exteriores"
                     placeholder="ejem: Pais, Ciudad"
@@ -681,7 +699,7 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
                   </label>
                   <input
                     value={info.agenciasExterior.cantidad}
-                    className="w-8 text-center outline-none  bg-slate-600 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                    className="w-8 text-center outline-none  border-[1px] border-[#0979af] text-slate-800 rounded-sm shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                     min={NUMBER_MIN}
                     max={NUMBER_LIMIT}
                     type="number"
@@ -699,10 +717,12 @@ const Form1 = ({ getData, setter, i, dataDB }) => {
             </section>
           </div>
         </form>
-        <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
+        <div className=" w-[240px] lg:w-3/4 grid lg:grid-cols-[repeat(2,minmax(210px,1fr))] text-base py-5 gap-4 self-center">
+          {/* <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
           {/* <div className="test-grid"> */}
           <button
-            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0979af] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150"
+            // className="bg-slate-500 text-slate-300 rounded-md text-lg hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección

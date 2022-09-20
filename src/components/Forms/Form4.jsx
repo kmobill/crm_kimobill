@@ -145,8 +145,8 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
   ); */
   return (
     <div className="fw-regular">
-      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-300 text-center italic text-lg">
+      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+        <h1 className="text-slate-900 text-center font-medium text-xl">
           Parte 4. Productos y Servicios, Clientes, Corresponsales
         </h1>
         <form ref={form4} className="flex flex-col gap-8">
@@ -166,13 +166,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
           {menusOpen.productosServicios && (
             <>
               <section className="flex flex-col w-full items-center gap-5">
-                <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                <ul className="flex flex-col gap-3 w-full text-slate-900 font-normal">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Cuentas de Depósito (corrientes, ahorros, inversiones)
                     </label>
                     <input
-                      className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -187,12 +187,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Comercio Exterior (Cartas de Crédito, Garantías)
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -207,13 +207,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Banca Electrónica (transferencias bancarias e
                       interbancarias)
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -228,12 +228,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Inversiones, Derivados Financieros
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -248,12 +248,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Remesas
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -268,12 +268,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Transferencias al/del exterior
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -288,12 +288,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Emisión de cheques sobre el exterior
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -308,12 +308,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Transporte de Valores
                     </label>
                     <input
-                      className="no-arrows outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="no-arrows outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -331,18 +331,18 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
 
-              <section className="flex flex-col w-full items-center gap-5 ">
-                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+              <section className="flex flex-col w-full items-center gap-5 text-slate-900 font-normal">
+                <h1 className="font-semibold text-slate-900 px-4 py-1  rounded-sm w-[min(90%,700px)] text-center">
                   1.1 Indique las transacciones que más alertas genera en su
                   Revisiones de Monitoreo. (en porcentaje)
                 </h1>
                 <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Depósitos en Efectivo
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -369,12 +369,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Depósitos en Cheque
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -401,12 +401,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Transferencias Recibidas Nacionales
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -433,12 +433,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Transferencias Recibidas del Exterior
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -467,18 +467,21 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                   </li>
                 </ul>
               </section>
-              <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+              
+              <section className="flex flex-col w-full items-center gap-5 text-slate-900 font-normal">
+              <h1 className="font-semibold text-slate-900 px-4 py-1  rounded-sm w-[min(90%,700px)] text-center">
+              
+                {/* <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center"> */}
                   1.2 indique el número de ROIIS que reportan al organismo de
                   control mensualmente
                 </h1>
                 <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       ROIIS
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -510,13 +513,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
           {menusOpen.baseClientes && (
             <>
               <section className="flex flex-col w-full items-center gap-5">
-                <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                <ul className="flex flex-col gap-3 w-full font-normal">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Número total de clientes
                     </label>
                     <input
-                      className="no-arrows outline-none w-12 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-12 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -542,12 +545,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                       }
                     />
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Personas Naturales
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -574,12 +577,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Personas Jurídicas
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -609,16 +612,16 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className=" text-slate-900 font-semibold px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   Actividad Económica de Clientes
                 </h1>
-                <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                <ul className="flex flex-col gap-3 w-full font-normal">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Entidades Financieras
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -645,12 +648,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Entidades del Estado
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -677,12 +680,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Entidades Corporativas
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -709,13 +712,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       No residentes (clientes que no se encuentran domiciliados
                       en el país)
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -742,12 +745,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Extranjeros
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -774,12 +777,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Fabricantes o comercializadores de armas
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -806,12 +809,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Remesadoras
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -838,12 +841,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Fundaciones y ONGs
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -870,12 +873,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     />
                     <span>%</span>
                   </li>
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       PEPs
                     </label>
                     <input
-                      className="no-arrows outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="no-arrows outline-none w-8 h-6 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -900,11 +903,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+                {/* <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center"> */}
+                <h1 className=" text-slate-900 font-semibold px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+
                   2.1 Indique los cinco clientes con mayor nivel transaccional y
                   describa sus actividades económicas.
                 </h1>
-                <table className="w-full lg:w-10/12">
+                <table className="w-full lg:w-10/12 text-sm">
                   <thead className="w-full ">
                     <tr className="grid grid-cols-[30px_repeat(3,1fr)] gap-1 ">
                       <th className="fw-regular bg-sky-800 text-center">n</th>
@@ -989,18 +994,20 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </table>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+              <h1 className=" text-slate-900 font-semibold px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+
+                {/* <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center"> */}
                   Riesgo De Clientes
                 </h1>
-                <ul className="flex flex-col gap-3 w-3/4 md:w-11/12 lg:w-4/5">
-                  <li className="w-full px-2 gap-1 flex flex-row text-slate-100 rounded-md items-center">
+                <ul className="flex flex-col gap-3 w-3/4 md:w-11/12 lg:w-4/5 font-normal">
+                  <li className="w-full px-2 gap-1 flex flex-row  rounded-md items-center">
                     <label className="w-3/4 text-left" htmlFor="activos">
                       ¿La entidad ha clasificado su base de clientes por Riesgo
                       de PLA?
                     </label>
                     <div className="h-6 w-1/4 flex justify-center">
                       <input
-                        className="outline-none  h-full w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        className="outline-none  h-full w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                         type="checkbox"
                         name="activos"
                         id="activos"
@@ -1010,7 +1017,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                     </div>
                   </li>
                   {riesgoPLA && (
-                    <li className="w-full px-2 gap-1 flex flex-col sm:flex-row  text-slate-100 rounded-md items-center">
+                    <li className="w-full px-2 gap-1 flex flex-col sm:flex-row   rounded-md items-center">
                       <label
                         className="w-3/4 text-center sm:text-left"
                         htmlFor="activos"
@@ -1024,7 +1031,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           </label>
                           <div className="flex justify-end w-full">
                             <input
-                              className="text-left no-arrows outline-none h-6 w-8 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                              className="text-left no-arrows outline-none h-6 w-8 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                               type="number"
                               name="activos"
                               id="activos"
@@ -1058,7 +1065,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           </label>
                           <div className="flex justify-end w-full">
                             <input
-                              className="text-left no-arrows outline-none h-6 w-8 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                              className="text-left no-arrows outline-none h-6 w-8 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                               type="number"
                               name="activos"
                               id="activos"
@@ -1092,7 +1099,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           </label>
                           <div className="flex justify-end w-full">
                             <input
-                              className="text-left no-arrows outline-none h-6 w-8 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                              className="text-left no-arrows outline-none h-6 w-8 border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                               type="number"
                               name="activos"
                               id="activos"
@@ -1142,15 +1149,15 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
           </h1>
           {menusOpen.corresponsales && (
             <>
-              <section className="flex flex-col w-full items-center gap-5">
+              <section className="flex flex-col w-full items-center gap-5 font-medium">
                 <ul className="flex flex-col gap-3 w-full">
-                  <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                  <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       ¿Ofrece servicios financieros a otras entidades
                       financieras?
                     </label>
                     <input
-                      className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -1167,12 +1174,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                   </li>
                   {corresponsales.ofreceServFinancieros && (
                     <>
-                      <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                      <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                         <label className="w-[min(540px,85%)]" htmlFor="activos">
                           Cuentas de Depósito
                         </label>
                         <input
-                          className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                          className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                           type="checkbox"
                           name="activos"
                           id="activos"
@@ -1188,12 +1195,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           }
                         />
                       </li>
-                      <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                      <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                         <label className="w-[min(540px,85%)]" htmlFor="activos">
                           Transferencias del/al exterior
                         </label>
                         <input
-                          className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                          className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                           type="checkbox"
                           name="activos"
                           id="activos"
@@ -1208,12 +1215,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           }
                         />
                       </li>
-                      <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                      <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                         <label className="w-[min(540px,85%)]" htmlFor="activos">
                           Compensación de cheques del exterior
                         </label>
                         <input
-                          className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                          className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                           type="checkbox"
                           name="activos"
                           id="activos"
@@ -1228,12 +1235,12 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           }
                         />
                       </li>
-                      <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                      <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                         <label className="w-[min(540px,85%)]" htmlFor="activos">
                           Custodia
                         </label>
                         <input
-                          className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                          className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                           type="checkbox"
                           name="activos"
                           id="activos"
@@ -1248,13 +1255,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                           }
                         />
                       </li>
-                      <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                      <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                         <label className="w-[min(540px,85%)]" htmlFor="activos">
                           ¿La entidad mantiene cuentas en otras entidades
                           financieras?
                         </label>
                         <input
-                          className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                          className="outline-none  h-6 w-6 cursor-pointer border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                           type="checkbox"
                           name="activos"
                           id="activos"
@@ -1272,7 +1279,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                         />
                       </li>
                       {corresponsales.cuentasEnOtrasEntidadesFinancieras && (
-                        <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                        <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                           <label
                             className="w-[min(485px,73%)]"
                             htmlFor="activos"
@@ -1288,7 +1295,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                                 "tipoEntidad"
                               )
                             }
-                            className="w-20 bg-slate-700 outline-none rounded-sm "
+                            className="w-36 border-[1px] border-[#0979af] outline-none rounded-sm "
                           >
                             <option value={"locales"}>Locales</option>
                             <option value={"exterior"}>Exterior</option>
@@ -1302,9 +1309,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
             </>
           )}
         </form>
-        <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
+        <div className=" w-[240px] lg:w-2/4 grid lg:grid-cols-[repeat(2,minmax(210px,1fr))] text-base py-5 gap-4 self-center">
+
+        {/* <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
           <button
-            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0979af] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150"
+
+            // className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección

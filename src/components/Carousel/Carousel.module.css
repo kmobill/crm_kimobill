@@ -40,17 +40,18 @@
   font-size: 4rem;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(255, 255, 255, 0.5); */
+  color: #0979af;
   cursor: pointer;
   border-radius: 0.25rem;
   padding: 0 0.5rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
 }
 
 .carouselButton:hover,
 .carouselButton:focus {
   color: white;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #0979af;
 }
 
 .carouselButton:focus {
@@ -75,19 +76,23 @@
   color: white;
 }
 .infoButton {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(9, 121, 175, 0.4);
   font-size: 40px;
 }
 .infoButtonActive {
-  color: rgba(255, 255, 255, 1);
+  color: #0979af;
+  font-size: 40px;
 }
 .selectedSlider {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  color: white;
-  font-size: 20px;
-  font-weight: 300;
+  border-radius: 7px;
+  color: #ffffff;
+  width: 40px;
+  margin-inline: auto;
+  background-color: #0979af;
+  font-size: 25px;
+  font-weight: 500;
 }

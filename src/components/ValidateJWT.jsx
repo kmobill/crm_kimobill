@@ -9,7 +9,7 @@ const ValidateJWT = ({ children }) => {
     return sessionStorage.getItem("token") ? true : false;
   }
   const verifyUser = (token_user) => {
-    fetch("/userinfo", {
+    fetch("api/userinfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
