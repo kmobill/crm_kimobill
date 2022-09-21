@@ -73,25 +73,39 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
 
   return (
     <div className="fw-regular">
-      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
         <div>
-          <h1 className="text-slate-300 text-center italic text-lg">
+          <h1 className=" text-center font-semibold text-xl">
             Parte 6. Modelo Operativo
           </h1>
-          <p className="text-slate-400 text-center">
-            Estructura Organizacional del proyecto; porcentaje de asignación y
+          <p className=" text-center font-medium text-lg">
+            Estructura Organizacional del proyecto: porcentaje de asignación y
             nivel de responsabilidad
           </p>
           <form ref={form6} className="w-full">
-            <section className="w-full">
-              <ul className="hidden text-center text-slate-300 break-all  md:grid grid-cols-[30px_repeat(6,1fr)_30px] gap-1">
-                <li className=" bg-sky-800">n</li>
-                <li className=" bg-sky-800">Apellidos y nombres</li>
-                <li className=" bg-sky-800">Rol dentro del proyecto</li>
-                <li className=" bg-sky-800">Email</li>
-                <li className=" bg-sky-800">Telf</li>
-                <li className=" bg-sky-800">% asignación al proyecto</li>
-                <li className=" bg-sky-800">Nivel Responsabilidad</li>
+            <section className="w-full font-medium text-sm">
+              <ul className="hidden text-center  break-all  md:grid grid-cols-[30px_repeat(6,1fr)_30px] gap-1">
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  n
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  Apellidos y nombres
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  Rol dentro del proyecto
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  Email
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  Telf
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  % asignación al proyecto
+                </li>
+                <li style={{ fontWeight: 500 }} className=" bg-sky-800">
+                  Nivel Responsabilidad
+                </li>
               </ul>
               <ul className="w-full flex flex-col gap-1 ">
                 {agentesOperativos &&
@@ -102,7 +116,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                         key={i}
                       >
                         <section
-                          className="w-full md:w-full grid grid-rows-[30px_repeat(6,1fr)] md:grid-cols-[30px_repeat(6,1fr)_30px] md:grid-rows-1 gap-1 text-slate-900
+                          className="w-full md:w-full grid grid-rows-[30px_repeat(6,1fr)] md:grid-cols-[30px_repeat(6,1fr)_30px] md:grid-rows-1 gap-1 
                         items-center 
                         text-center
                         "
@@ -294,19 +308,19 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                 }
                 className="flex flex-row justify-center mt-2"
               >
-                <div className="rounded-sm p-1 w-60 bg-slate-500 flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
+                <div className="rounded-sm p-1 w-80 bg-[#0979af] flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
                   <h1>Agregar</h1>
                   <img className="h-8" src={addIcon} />
                 </div>
               </div>
             </section>
             <section className="w-full flex flex-col">
-              <div className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
-                <label className="w-[min(540px,85%)]" htmlFor="activos">
+              <div className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
+                <label className="w-[min(640px,85%)]" htmlFor="activos">
                   ¿Está en la capacidad de crear un área de medios de pago?
                 </label>
                 <input
-                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]  text-right"
                   type="checkbox"
                   name="activos"
                   id="activos"
@@ -314,14 +328,15 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                   onChange={(e) => setCapacidad(e.target.checked)}
                 />
               </div>
-              <div className="text-slate-300 w-full flex flex-col items-center">
+              <div className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
+
                 {capacidad ? (
-                  <div className="w-[min(600px,90%)] flex flex-row justify-between items-center">
-                    <label className="px-2" htmlFor="activos">
+                  <>
+                    <label className="w-[min(640px,80%)]" htmlFor="activos">
                       ¿Cuantas personas asignaría?
                     </label>
                     <input
-                      className="outline-none w-8 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="outline-none w-14 h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       type="number"
                       name="activos"
                       id="activos"
@@ -331,12 +346,12 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                       onChange={(e) => setNumPersMediosPago(e.target.value)}
                       required
                     />
-                  </div>
+                  </>
                 ) : (
                   <div className="w-full flex flex-col justify-center items-center">
                     <label className="px-2">Coméntenos ¿Por que?</label>
                     <textarea
-                      className="w-[min(400px,90%)] outline-none h-12 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                      className="w-[min(700px,90%)] border-[1px] border-[#0979af] rounded-md outline-none h-12  px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] "
                       value={comentario}
                       onChange={(e) => setComentario(e.target.value)}
                       required
@@ -352,7 +367,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
 
         <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
           <button
-            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0066cb] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150 h-11"
             onClick={() => handleSave()}
           >
             Guardar esta Sección

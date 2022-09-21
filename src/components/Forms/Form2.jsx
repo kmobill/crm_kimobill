@@ -110,35 +110,35 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
   return (
     <div className="">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-900 text-center text-xl font-bold">
+        <h1 className="text-slate-900 text-center text-xl font-semibold">
           Parte 2. Administración de la entidad
         </h1>
         <form ref={form2} className="flex flex-col gap-1">
           <div className="flex flex-col justify-center text-slate-300">
             <ul className="flex flex-col text-center gap-2 text-slate-300">
-              <h1 className="text-slate-900 text-xl px-4 py-1 tw-fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
+              <h1 className="text-slate-900 text-xl px-4 py-1 font-medium rounded-sm w-[min(90%,700px)] text-center self-center">
                 Datos de Representantes Legales
               </h1>
               <li>
-                <div className="text-center gap-2 text-slate-300 text-sm">
+                <div className="text-center gap-2 text-slate-100 text-sm">
                   <table className="w-full">
                     <thead className="w-full ">
                       <tr className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1">
-                        <th className="fw-regular bg-sky-800 text-center">n</th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800 text-center">n</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Número de Identificación
                         </th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Apellidos y nombres
                         </th>
-                        <th className="fw-regular bg-sky-800">Nacionalidad</th>
-                        <th className="fw-regular bg-sky-800">PEP (si/no)</th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">Nacionalidad</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">PEP (si/no)</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Fecha de nacimiento
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="w-full flex flex-col gap-1 ">
+                    <tbody className="w-full flex flex-col gap-1 text-slate-900 font-medium">
                       {repLegales &&
                         repLegales.map((value, i) => {
                           return (
@@ -285,26 +285,28 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
               </li>
               <li className="flex justify-center">
                 <section className="flex flex-col w-5/6 text-left gap-2 text-slate-900 mb-10 mt-6">
-                  <h1 className=" text-xl font-medium px-4 py-1 tw-fw-bold rounded-sm w-[min(90%,700px)] text-center self-center">
+                  <h1 className=" text-xl font-semibold italic px-4 py-1 rounded-sm w-[min(90%,700px)] text-center self-center">
                     Datos de Accionistas
                   </h1>
-                  <p>
-                    Para Bancos y Mutualistas adjuntar el detalle de accionistas
-                    con participación directa o indirecta, igual o superior al
-                    10% del capital suscrito; en caso de que los accionistas
-                    sean empresas proporcionar el(los) nombre(s) de la(s)
-                    persona(s) natural(es) propietarias.
-                  </p>
-                  <p>
-                    Para Cooperativas de Ahorro y Crédito, adjuntar el detalle
-                    de socios con participación directa o indirecta, que igualen
-                    o superen el 10% del capital y reservas de la Cooperativa;
-                    en caso de que los socios sean empresas proporcionar el(los)
-                    nombre(s) de la(s) persona(s) natural(es) propietarias. Si
-                    ningún socio posee una participación igual o superior al
-                    10%, proporcionar el listado de los miembros del Consejo de
-                    Administración.
-                  </p>
+                  <div className="text-slate-800 text-base font-medium flex flex-col gap-3">
+                    <p>
+                      Para Bancos y Mutualistas adjuntar el detalle de
+                      accionistas con participación directa o indirecta, igual o
+                      superior al 10% del capital suscrito; en caso de que los
+                      accionistas sean empresas proporcionar el(los) nombre(s)
+                      de la(s) persona(s) natural(es) propietarias.
+                    </p>
+                    <p>
+                      Para Cooperativas de Ahorro y Crédito, adjuntar el detalle
+                      de socios con participación directa o indirecta, que
+                      igualen o superen el 10% del capital y reservas de la
+                      Cooperativa; en caso de que los socios sean empresas
+                      proporcionar el(los) nombre(s) de la(s) persona(s)
+                      natural(es) propietarias. Si ningún socio posee una
+                      participación igual o superior al 10%, proporcionar el
+                      listado de los miembros del Consejo de Administración.
+                    </p>
+                  </div>
                 </section>
               </li>
               <li className="flex flex-col gap-5">
@@ -315,21 +317,21 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
                   <table className="w-full">
                     <thead className="w-full ">
                       <tr className="grid grid-cols-[30px_repeat(5,1fr)_30px] gap-1">
-                        <th className="fw-regular bg-sky-800 text-center">n</th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800 text-center">n</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Número de Identificación
                         </th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Apellidos y nombres
                         </th>
-                        <th className="fw-regular bg-sky-800">Nacionalidad</th>
-                        <th className="fw-regular bg-sky-800">PEP (si/no)</th>
-                        <th className="fw-regular bg-sky-800">
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">Nacionalidad</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">PEP (si/no)</th>
+                        <th style={{fontWeight:500}} className="fw-regular bg-sky-800">
                           Fecha de nacimiento
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="w-full flex flex-col gap-1 ">
+                    <tbody className="w-full flex flex-col gap-1 text-slate-900 font-medium">
                       {accionistas &&
                         accionistas.map((value, i) => {
                           return (
@@ -469,8 +471,7 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
                   className="flex flex-row justify-center"
                 >
                   <div className="rounded-sm p-1 w-80 bg-[#0979af] flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
-
-                  {/* <div className="rounded-sm p-1 w-60 bg-slate-500 flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out"> */}
+                    {/* <div className="rounded-sm p-1 w-60 bg-slate-500 flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out"> */}
                     <h1>Agregar Accionista</h1>
                     <img className="h-8" src={addIcon} />
                   </div>
@@ -480,11 +481,9 @@ const Form2 = ({ getData, setter, i, dataDB }) => {
           </div>
         </form>
         <div className=" w-[240px] lg:w-2/4 grid lg:grid-cols-[repeat(2,minmax(210px,1fr))] text-base py-5 gap-4 self-center">
-
-        {/* <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
+          {/* <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
           <button
-            className="bg-[#0979af] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150"
-
+            className="bg-[#0066cb] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150 h-11"
             // className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >

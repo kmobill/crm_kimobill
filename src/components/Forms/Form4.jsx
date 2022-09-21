@@ -146,7 +146,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
   return (
     <div className="fw-regular">
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-900 text-center font-medium text-xl">
+        <h1 className="text-slate-900 text-center font-semibold text-xl">
           Parte 4. Productos y Servicios, Clientes, Corresponsales
         </h1>
         <form ref={form4} className="flex flex-col gap-8">
@@ -159,14 +159,15 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 "productosServicios"
               )
             }
-            className="cursor-pointer self-center text-slate-300 fw-bold bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center"
+            className={`cursor-pointer self-center text-slate-100 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center ${menusOpen.productosServicios?'bg-[rgb(0,128,255)]':'bg-[rgba(0,128,255,0.77)]'}`}
+
           >
             1. Productos y Servicios que ofrece la Entidad
           </h1>
           {menusOpen.productosServicios && (
             <>
               <section className="flex flex-col w-full items-center gap-5">
-                <ul className="flex flex-col gap-3 w-full text-slate-900 font-normal">
+                <ul className="flex flex-col gap-3 w-full text-slate-800 text-base font-medium">
                   <li className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Cuentas de Depósito (corrientes, ahorros, inversiones)
@@ -331,7 +332,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
 
-              <section className="flex flex-col w-full items-center gap-5 text-slate-900 font-normal">
+              <section className="flex flex-col w-full items-center gap-5 text-slate-800 text-base font-medium">
                 <h1 className="font-semibold text-slate-900 px-4 py-1  rounded-sm w-[min(90%,700px)] text-center">
                   1.1 Indique las transacciones que más alertas genera en su
                   Revisiones de Monitoreo. (en porcentaje)
@@ -468,14 +469,14 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
               
-              <section className="flex flex-col w-full items-center gap-5 text-slate-900 font-normal">
+              <section className="flex flex-col w-full items-center gap-5">
               <h1 className="font-semibold text-slate-900 px-4 py-1  rounded-sm w-[min(90%,700px)] text-center">
               
                 {/* <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center"> */}
                   1.2 indique el número de ROIIS que reportan al organismo de
                   control mensualmente
                 </h1>
-                <ul className="flex flex-col gap-3 w-full">
+                <ul className="flex flex-col gap-3 w-full text-slate-800 text-base font-medium">
                   <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       ROIIS
@@ -506,14 +507,15 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 "baseClientes"
               )
             }
-            className="cursor-pointer self-center text-slate-300 fw-bold bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center"
+            className={`cursor-pointer self-center text-slate-100 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center ${menusOpen.baseClientes?'bg-[rgb(0,128,255)]':'bg-[rgba(0,128,255,0.77)]'}`}
+
           >
             2. Base de Clientes
           </h1>
           {menusOpen.baseClientes && (
             <>
-              <section className="flex flex-col w-full items-center gap-5">
-                <ul className="flex flex-col gap-3 w-full font-normal">
+              <section className="flex flex-col w-full items-center gap-5 text-slate-800 text-base font-medium">
+                <ul className="flex flex-col gap-3 w-full">
                   <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Número total de clientes
@@ -612,10 +614,10 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 </ul>
               </section>
               <section className="flex flex-col w-full items-center gap-5">
-                <h1 className=" text-slate-900 font-semibold px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
+                <h1 className=" text-slate-900 font-semibold text-xl px-4 py-1 rounded-sm w-[min(90%,700px)] text-center">
                   Actividad Económica de Clientes
                 </h1>
-                <ul className="flex flex-col gap-3 w-full font-normal">
+                <ul className="flex flex-col gap-3 w-full text-slate-800 text-base font-medium">
                   <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
                       Entidades Financieras
@@ -909,20 +911,20 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                   2.1 Indique los cinco clientes con mayor nivel transaccional y
                   describa sus actividades económicas.
                 </h1>
-                <table className="w-full lg:w-10/12 text-sm">
-                  <thead className="w-full ">
-                    <tr className="grid grid-cols-[30px_repeat(3,1fr)] gap-1 ">
-                      <th className="fw-regular bg-sky-800 text-center">n</th>
-                      <th className="fw-regular bg-sky-800">
+                <table className="w-full lg:w-10/12 text-base">
+                  <thead className="w-full text-slate-100">
+                    <tr className="grid grid-cols-[30px_repeat(3,1fr)] gap-1">
+                      <th className="bg-sky-800 text-center" style={{fontWeight:500}}>n</th>
+                      <th className="bg-sky-800 pl-2 " style={{fontWeight:500}}>
                         Número de Identificación
                       </th>
-                      <th className="fw-regular bg-sky-800">Nombre Cliente</th>
-                      <th className="fw-regular bg-sky-800">
+                      <th style={{fontWeight:500}} className="bg-sky-800 pl-2">Nombre Cliente</th>
+                      <th style={{fontWeight:500}} className="bg-sky-800 pl-2">
                         Actividad Principal
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="w-full flex flex-col gap-1 ">
+                  <tbody className="w-full flex flex-col gap-1 font-medium ">
                     {clientesMayorIngreso &&
                       clientesMayorIngreso.map((value, i) => {
                         return (
@@ -999,7 +1001,7 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 {/* <h1 className="fw-bold text-slate-900 bg-slate-500 px-4 py-1 rounded-sm w-[min(90%,700px)] text-center"> */}
                   Riesgo De Clientes
                 </h1>
-                <ul className="flex flex-col gap-3 w-3/4 md:w-11/12 lg:w-4/5 font-normal">
+                <ul className="flex flex-col gap-3 w-3/4 md:w-11/12 lg:w-4/5 text-slate-800 text-base font-medium">
                   <li className="w-full px-2 gap-1 flex flex-row  rounded-md items-center">
                     <label className="w-3/4 text-left" htmlFor="activos">
                       ¿La entidad ha clasificado su base de clientes por Riesgo
@@ -1143,13 +1145,13 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
                 "corresponsales"
               )
             }
-            className="cursor-pointer self-center text-slate-300 fw-bold bg-slate-900 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center"
+            className={`cursor-pointer self-center text-slate-100 px-4 py-2 rounded-sm w-[min(90%,700px)] text-center ${menusOpen.corresponsales?'bg-[rgb(0,128,255)]':'bg-[rgba(0,128,255,0.77)]'}`}
           >
             3. Corresponsales
           </h1>
           {menusOpen.corresponsales && (
             <>
-              <section className="flex flex-col w-full items-center gap-5 font-medium">
+              <section className="flex flex-col w-full items-center gap-5 text-slate-800 text-base font-medium">
                 <ul className="flex flex-col gap-3 w-full">
                   <li className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                     <label className="w-[min(540px,85%)]" htmlFor="activos">
@@ -1313,9 +1315,9 @@ const Form4 = ({ getData, setter, i, dataDB }) => {
 
         {/* <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
           <button
-            className="bg-[#0979af] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0066cb] text-slate-100 rounded-md hover:scale-105 ease-in-out duration-150 h-11"
 
-            // className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
+            // className="bg-slate-500 text-slate-100 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={() => handleSave()}
           >
             Guardar esta Sección

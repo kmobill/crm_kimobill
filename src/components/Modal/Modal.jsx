@@ -3,7 +3,7 @@ import { useRef } from "react";
 import ModalStyles from "./Modal.module.css";
 const Modal = ({
   children,
-  parentFunction,
+  parentFunction=()=>{},
   buttonText = "Open Modal",
 }) => {
   const refModal = useRef(null);

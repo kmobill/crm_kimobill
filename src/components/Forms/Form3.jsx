@@ -66,16 +66,16 @@ const Form3 = ({ getData, setter, i, dataDB }) => {
   return (
     <div>
       <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-900 font-bold text-center text-lg">
+        <h1 className="text-slate-900 font-semibold text-center text-xl">
           Parte 3. Situación financiera
         </h1>
         <form ref={form3} id="formPart3" className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-slate-900 px-4 py-1 text-xl rounded-sm w-[min(90%,700px)] text-center">
+            <h1 className="text-slate-900 px-4 py-1 text-xl font-medium rounded-sm w-[min(90%,700px)] text-center">
               Balance General
             </h1>
-            <section className="w-full">
-              <div className="p-1 gap-1 flex flex-row justify-center text-slate-900 rounded-md items-center">
+            <section className="w-full text-slate-800 text-base font-medium">
+              <div className="p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                 <label className="w-1/2 max-w-[120px]" htmlFor="activos">
                   Activos
                 </label>
@@ -122,11 +122,7 @@ const Form3 = ({ getData, setter, i, dataDB }) => {
                   Patrimonio
                 </label>
                 <input
-                  className="no-arrows outline-none w-1/2 max-w-[320px] max-h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-900 text-right"
-                  // className="no-arrows outline-none w-1/2 max-w-[320px] max-h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-900 text-right"
-
-                  // className="no-arrows outline-none w-1/2 max-w-[320px] max-h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-900 text-right"
-
+                  className="no-arrows outline-none w-1/2 max-w-[320px] max-h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-900 text-right"
                   type="number"
                   name="razon_social"
                   id="razon_social"
@@ -139,8 +135,8 @@ const Form3 = ({ getData, setter, i, dataDB }) => {
               </div>
             </section>
           </section>
-          <section className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-slate-900  px-4 py-1 text-xl rounded-sm w-[min(90%,700px)] text-center">
+          <section className="flex flex-col w-full items-center gap-5 text-slate-800 text-base font-medium">
+            <h1 className="text-slate-900  px-4 py-1 text-xl font-medium rounded-sm w-[min(90%,700px)] text-center">
               Estado de Perdidas y Ganancias
             </h1>
             <section className="w-full">
@@ -207,10 +203,9 @@ const Form3 = ({ getData, setter, i, dataDB }) => {
         </form>
         
         <div className=" w-[240px] lg:w-2/4 grid lg:grid-cols-[repeat(2,minmax(210px,1fr))] text-base py-5 gap-4 self-center">
-
         {/* <div  className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center"> */}
           <button
-            className="bg-[#0979af] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0066cb] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150 h-11"
 
             // className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
             onClick={(e) => handleSave(e)}

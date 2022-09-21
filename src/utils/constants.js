@@ -13,8 +13,9 @@ export const estilosCalendario = {
     color: "#ffffff",
   },
   input: {
+    fontFamily: "Montserrat, sans-serif",
     margin: 0,
-    padding: "2px",
+    padding: "2px 10px",
     color: "#000000",
     backgroundColor: "rgb(203 213 225)",
   },

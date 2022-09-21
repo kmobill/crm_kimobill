@@ -140,25 +140,25 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
   useEffect(() => console.log(dataDB), [dataDB]);
 
   return (
-    <div className="fw-regular">
-      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-800 to-slate-900 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
-        <h1 className="text-slate-300 text-center italic text-lg">
+    <div className="">
+      <section className="flex flex-col mt-2 gap-1 p-3 bg-gradient-to-r from-slate-100 to-slate-200 rounded-md shadow-[0_15px_25px_rgba(0,0,0,0.6)] ">
+        <h1 className=" text-center text-xl font-semibold">
           Parte 5. Programa de cumplimiento
         </h1>
         <form ref={form5} className="flex flex-col gap-8">
           <section className="flex flex-col w-full items-center gap-5">
-            <ul className="flex flex-col gap-3 w-full">
+            <ul className="flex flex-col gap-3 w-full text-slate-900 text-base font-medium">
               {preguntas.map((pregunta, i) => (
                 <li
                   key={i}
                   className="flex flex-col justify-center items-center"
                 >
-                  <div className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
-                    <label className="w-[min(540px,85%)]" htmlFor="activos">
+                  <div className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
+                    <label className="w-[min(740px,85%)] font-semibold" htmlFor="activos">
                       {pregunta}
                     </label>
                     <input
-                      className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                      className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                       type="checkbox"
                       name="activos"
                       id="activos"
@@ -175,11 +175,8 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                   </div>
                   {respuestas[i] &&
                     (i === 0 ? (
-                      <div className="p-1 gap-1 flex flex-row justify-center text-slate-400 rounded-md items-center">
-                        <label
-                          className="w-1/2 max-w-[200px]"
-                          htmlFor="razon_social"
-                        >
+                      <div className="text-slate-700 text-base font-medium p-1 gap-1 flex flex-row justify-center  rounded-md items-center w-[min(700px,75%)]">
+                        <label htmlFor="razon_social">
                           fecha de ultima actualización
                         </label>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -205,13 +202,13 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                     ) : i === 1 ? (
                       <>
                         <label
-                          className="w-[min(540px,85%)] text-slate-400 mb-2"
+                          className="w-full  mb-2 text-slate-800 text-base font-medium text-center"
                           htmlFor="detalle clientes"
                         >
                           Detalle las actividades económicas "no aceptadas"
                         </label>
                         <textarea
-                          className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                          className="border-[1px] border-[#0979af] rounded-md text-base font-medium outline-none w-[min(700px,75%)] max-h-[150px] px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                           value={subRespuestas[i][2.1]}
                           placeholder="ejem: Casinos"
                           onChange={(e) =>
@@ -233,14 +230,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                     ) : i === 2 ? (
                       <>
                         <label
-                          className="w-[min(540px,85%)] text-slate-400 mb-2"
+                          className="w-full  mb-2 text-slate-800 text-base font-medium text-center"
                           htmlFor="detalle clientes"
                         >
                           Detalle los tipos de clientes que son sujetos de
                           procesos de Debidas Diligencias Ampliadas
                         </label>
                         <textarea
-                          className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                          className="border-[1px] border-[#0979af] rounded-md text-base font-medium outline-none w-[min(700px,75%)] max-h-[150px] px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                           value={subRespuestas[i][3.1]}
                           placeholder="ejem: PEPs"
                           onChange={(e) =>
@@ -261,9 +258,9 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       </>
                     ) : i === 3 ? (
                       <>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-row justify-center  text-slate-400 rounded-md">
+                        <div className=" w-[min(90%,640px)]  p-1 gap-1 flex flex-row justify-start   rounded-md">
                           <label className="pr-5" htmlFor="activos">
-                            el proceso es:
+                            El proceso es:
                           </label>
                           <select
                             value={subRespuestas[i][4.1]}
@@ -276,7 +273,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 4.1
                               )
                             }
-                            className="w-40 bg-slate-700 outline-none rounded-sm "
+                            className="w-40 border-[1px] border-[#0979af] rounded-md outline-none "
                           >
                             <option value={"automatico"}>Automático</option>
                             <option value={"semiAutomatico"}>
@@ -286,14 +283,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                           </select>
                         </div>
                         {subRespuestas[i][4.1] === "automatico" && (
-                          <div className="w-5/6 p-1 gap-1 flex flex-col justify-center  text-slate-400 rounded-md">
-                            <div className="flex flex-row w-full">
+                          <div className="w-5/6 p-1 gap-6 flex flex-col justify-center my-2  rounded-md">
+                            <div className="flex flex-col justify-center items-start w-[min(90%,640px)] m-auto gap-2">
                               <label className="pr-5" htmlFor="activos">
                                 Nombre del sistema utilizado para el proceso de
                                 monitoreo
                               </label>
                               <input
-                                className=" outline-none w-1/2 max-h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                                className="border-[1px] border-[#0979af] rounded-md outline-none w-1/2 max-h-6 px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="text"
                                 name="razon_social"
                                 id="razon_social"
@@ -310,8 +307,8 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 }
                               />
                             </div>
-                            <div className="flex flex-row w-full">
-                              <label className="pr-5" htmlFor="activos">
+                            <div className="w-[min(90%,640px)] m-auto gap-2 flex flex-row justify-start items-center">
+                              <label className="" htmlFor="activos">
                                 Fecha en que fue implementado.
                               </label>
                               <LocalizationProvider
@@ -345,7 +342,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       </>
                     ) : i === 4 ? (
                       <>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-row justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)] p-1 gap-1 flex flex-row justify-start   rounded-md">
                           <label className="pr-5" htmlFor="activos">
                             ¿Cuál es la periodicidad con la que se ejecuta?
                           </label>
@@ -360,14 +357,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 5.1
                               )
                             }
-                            className="w-40 bg-slate-700 outline-none rounded-sm max-h-6 "
+                            className="border-[1px] border-[#0979af] rounded-md w-40 outline-none max-h-6 "
                           >
                             <option value={"anual"}>Anual</option>
                             <option value={"semestral"}>Semestral</option>
                             <option value={"trimestral"}>Trimestral</option>
                           </select>
                         </div>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-col justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)] m-auto p-1 gap-2 flex flex-col justify-center   rounded-md">
                           <label className="w-full">
                             La validación se ejecuta en los procesos de
                             vinculación de:
@@ -376,16 +373,16 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             {subRespuestas[i][5.2].map((value, j) => (
                               <li
                                 key={j}
-                                className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center"
+                                className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center"
                               >
                                 <label
-                                  className="w-[min(540px,85%)]"
+                                  className="w-[min(740px,85%)]"
                                   htmlFor="activos"
                                 >
                                   {subPreguntas5_2[j]}
                                 </label>
                                 <input
-                                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                                   type="checkbox"
                                   name="activos"
                                   id="activos"
@@ -405,7 +402,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-col justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)] m-auto p-1 gap-2 flex flex-col justify-center   rounded-md">
                           <label className="w-full">
                             Provea las listas contra las cuáles se realizan las
                             validaciones
@@ -414,16 +411,16 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             {subRespuestas[i][5.3].map((value, j) => (
                               <li
                                 key={j}
-                                className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center"
+                                className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center"
                               >
                                 <label
-                                  className="w-[min(540px,85%)]"
+                                  className="w-[min(740px,85%)]"
                                   htmlFor="activos"
                                 >
                                   {subPreguntas5_3[j]}
                                 </label>
                                 <input
-                                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                                  className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                                   type="checkbox"
                                   name="activos"
                                   id="activos"
@@ -442,9 +439,9 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                               </li>
                             ))}
                             {subRespuestas[i][5.3][4] && (
-                              <li className="w-full p-1 gap-1 flex flex-row justify-center text-slate-100 rounded-md items-center">
+                              <li className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                                 <textarea
-                                  className=" outline-none w-full bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                                  className=" outline-none w-full bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                   type="text"
                                   name="razon_social"
                                   id="razon_social"
@@ -467,14 +464,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                         </div>
                       </>
                     ) : i === 5 ? (
-                      <div className="w-full p-1 gap-1 flex flex-col justify-center text-slate-400 rounded-md items-center">
+                      <div className="w-[min(90%,640px)] p-1 gap-1 flex flex-col justify-start  rounded-md items-center">
                         <h1>¿Por cuánto tiempo mantiene los documentos?</h1>
                         <div className="w-5/6 flex flex-row justify-center items-center">
                           <label className="px-2" htmlFor="activos">
                             Años
                           </label>
                           <input
-                            className="outline-none w-12 h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                            className="border-[1px] border-[#0979af] rounded-md outline-none w-12 h-6 px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                             type="number"
                             name="activos"
                             id="activos"
@@ -496,18 +493,18 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       </div>
                     ) : i === 6 ? (
                       <>
-                        <div className="w-full p-1 gap-1 flex flex-col justify-center text-slate-400 rounded-md items-center">
+                        <div className="w-full p-1 gap-1 flex flex-col justify-center  rounded-md items-center text-sm">
                           <ul className="w-5/6 flex flex-row gap-1 justify-center items-center">
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Apellidos y Nombres
                               </label>
                               <input
                                 placeholder="Nombres..."
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px]  shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px]  shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="text"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -527,14 +524,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 C.I.
                               </label>
                               <input
                                 placeholder="111111111-1"
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -556,14 +553,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Email
                               </label>
                               <input
                                 placeholder="example@example.com"
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="email"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -583,14 +580,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Teléfonos
                               </label>
                               <input
                                 placeholder="2-222-222"
-                                className="no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className="no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -612,7 +609,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="razon_social"
                               >
                                 fecha Ultima actualización
@@ -647,16 +644,16 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                           </ul>
                         </div>
-                        <div className="text-slate-400 w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
+                        <div className=" w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                           <label
-                            className="w-[min(540px,85%)]"
+                            className="w-[min(740px,85%)]"
                             htmlFor="activos"
                           >
                             ¿Ha designado la entidad un Oficial de Cumplimiento
                             Suplente?
                           </label>
                           <input
-                            className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                            className="outline-none  h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                             type="checkbox"
                             name="activos"
                             id="activos"
@@ -674,16 +671,16 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                           />
                         </div>
                         {subRespuestas[i]["7.1.1"] && (
-                          <ul className="text-slate-400 w-5/6 flex flex-row gap-1 justify-center items-center">
+                          <ul className=" w-5/6 flex flex-row gap-1 justify-center items-center text-sm">
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Apellidos y Nombres
                               </label>
                               <input
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px]  shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px]  shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="text"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -704,13 +701,13 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 C.I.
                               </label>
                               <input
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -733,14 +730,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Email
                               </label>
                               <input
                                 placeholder="example@example.com"
-                                className=" no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className=" no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="email"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -760,14 +757,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="nombresPregunta7"
                               >
                                 Teléfonos
                               </label>
                               <input
                                 placeholder="2-222-222"
-                                className="no-arrows text-slate-900 px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                className="no-arrows  px-1 py-[2px] bg-slate-300 text-center outline-none w-full h-[27px] shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                 type="number"
                                 name="nombresPregunta7"
                                 id="activos"
@@ -789,7 +786,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             </li>
                             <li className="flex flex-col items-center">
                               <label
-                                className="w-full fw-regular bg-sky-800 text-center"
+                                className="w-full bg-sky-800 text-center"
                                 htmlFor="razon_social"
                               >
                                 fecha Ultima actualización
@@ -829,7 +826,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       </>
                     ) : i === 7 ? (
                       <>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-row justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)] m-auto p-1 gap-1 flex flex-row justify-start   rounded-md">
                           <label className="pr-5" htmlFor="activos">
                             ¿Qué modalidad utilizan?
                           </label>
@@ -844,13 +841,13 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 8.1
                               )
                             }
-                            className="w-40 bg-slate-700 outline-none rounded-sm max-h-6 "
+                            className="w-40 border-[1px] border-[#0979af] rounded-md outline-none max-h-6 "
                           >
                             <option value={"virtual"}>Virtual</option>
                             <option value={"presencial"}>Presencial</option>
                           </select>
                         </div>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-row justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)]  p-1 gap-1 flex flex-row justify-start   rounded-md">
                           <label className="pr-5" htmlFor="activos">
                             ¿Cuál es la periodicidad con la que se aplican los
                             procesos de capacitación??
@@ -866,7 +863,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 8.2
                               )
                             }
-                            className="w-40 bg-slate-700 outline-none rounded-sm max-h-6 "
+                            className="w-40 border-[1px] border-[#0979af] rounded-md outline-none max-h-6 "
                           >
                             <option value={"anual"}>Anual</option>
                             <option value={"semestral"}>Semestral</option>
@@ -876,13 +873,13 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       </>
                     ) : i === 8 ? (
                       <div className="w-full flex flex-col gap-5 justify-center items-center">
-                        <div className="flex flex-col w-full justify-center items-center text-slate-400 gap-2">
+                        <div className="flex flex-col w-[min(90%,640px)]  justify-center items-start  gap-2">
                           <label className="pr-5" htmlFor="activos">
                             Nombre de la entidad que ejecuta las revisiones de
                             auditoría
                           </label>
                           <input
-                            className=" outline-none w-[min(250px,90%)] max-h-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                            className=" outline-none w-[min(250px,90%)] max-h-6 border-[1px] border-[#0979af] rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                             type="text"
                             name="razon_social"
                             id="razon_social"
@@ -900,7 +897,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             }
                           />
                         </div>
-                        <div className="w-[min(500px,80%)] p-1 gap-1 flex flex-row justify-center  text-slate-400 rounded-md">
+                        <div className="w-[min(90%,640px)]  p-1 gap-1 flex flex-row justify-start   rounded-md">
                           <label className="pr-5" htmlFor="activos">
                             Periodicidad en que se realiza las revisiones
                           </label>
@@ -915,7 +912,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                                 9.2
                               )
                             }
-                            className="w-40 bg-slate-700 outline-none rounded-sm max-h-6 "
+                            className="w-40 border-[1px] border-[#0979af] outline-none rounded-md max-h-6 "
                           >
                             <option value={"anual"}>Anual</option>
                             <option value={"semestral"}>Semestral</option>
@@ -927,7 +924,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                       <>
                         <>
                           <textarea
-                            className=" outline-none w-[min(500px,90%)] max-h-[150px] bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100"
+                            className=" outline-none w-[min(700px,75%)] max-h-[150px] border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                             value={subRespuestas[i][10.1]}
                             placeholder="Describa..."
                             onChange={(e) =>
@@ -952,20 +949,23 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                     ))}
                 </li>
               ))}
-              <li className="flex flex-col items-center justify-center w-full">
-                <h1 className="w-[min(570px,85%)] text-slate-100 mb-2">
-                  11. ¿Cuenta su Institución con revisiones periódicas de
-                  evaluación al cumplimiento de las políticas de Prevención de
-                  Lavado de Activos?
-                </h1>
-                <ul className="flex flex-col w-[500px] text-slate-400 gap-2">
+              <li className="flex flex-col items-center justify-center w-full gap-4">
+                <div className="flex flex-row w-full justify-center gap-1">
+                  <h1 className="w-[min(740px,85%)] font-semibold">
+                    11. ¿Cuenta su Institución con revisiones periódicas de
+                    evaluación al cumplimiento de las políticas de Prevención de
+                    Lavado de Activos?
+                  </h1>
+                  <div className="outline-none bg-transparent h-6 w-6 bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"></div>
+                </div>
+                <ul className="flex flex-col w-[min(700px,90%)]  gap-2">
                   <li className="flex flex-row gap-2 justify-between">
-                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                    <div className="flex flex-row justify-between gap-2 w-[300px]">
                       <label className="" htmlFor="activos">
                         Auditoría Interna
                       </label>
                       <input
-                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                         type="checkbox"
                         name="activos"
                         id="activos"
@@ -1009,12 +1009,12 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                     )}
                   </li>
                   <li className="flex flex-row gap-2 justify-between">
-                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                    <div className="flex flex-row justify-between gap-2 w-[300px]">
                       <label className="" htmlFor="activos">
                         Auditoría Externa
                       </label>
                       <input
-                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                         type="checkbox"
                         name="activos"
                         id="activos"
@@ -1058,12 +1058,14 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                     )}
                   </li>
                   <li className="flex flex-row gap-2 justify-between">
-                    <div className="flex flex-row justify-between gap-2 w-[200px]">
+                    <div className="flex flex-row justify-between gap-2 w-[300px]">
                       <label className="" htmlFor="activos">
                         Auditoría Ente de Control
                       </label>
                       <input
-                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-slate-100 text-right"
+                        className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
+
+                        // className="outline-none h-6 w-6 cursor-pointer bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)] text-right"
                         type="checkbox"
                         name="activos"
                         id="activos"
@@ -1113,7 +1115,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
         </form>
         <div className="w-4/5 lg:w-3/5 grid md:grid-cols-[repeat(2,minmax(210px,1fr))] py-5 gap-4 self-center">
           <button
-            className="bg-slate-500 text-slate-300 rounded-md text-xl hover:scale-105 ease-in-out duration-150"
+            className="bg-[#0066cb] text-slate-300 rounded-md hover:scale-105 ease-in-out duration-150 h-11"
             onClick={() => handleSave()}
           >
             Guardar esta Sección
