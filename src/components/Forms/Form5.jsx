@@ -441,7 +441,7 @@ const Form5 = ({ getData, setter, i, dataDB }) => {
                             {subRespuestas[i][5.3][4] && (
                               <li className="w-full p-1 gap-1 flex flex-row justify-center rounded-md items-center">
                                 <textarea
-                                  className=" outline-none w-full bg-slate-600  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
+                                  className=" outline-none w-full border-[1px] border-[#0979af]  rounded-md px-1 shadow-[0_0_10px_-6px_rgba(255,255,255,0.9)]"
                                   type="text"
                                   name="razon_social"
                                   id="razon_social"

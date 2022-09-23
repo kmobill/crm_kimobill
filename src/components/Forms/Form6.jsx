@@ -84,7 +84,7 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
           </p>
           <form ref={form6} className="w-full">
             <section className="w-full font-medium text-sm">
-              <ul className="hidden text-center  break-all  md:grid grid-cols-[30px_repeat(6,1fr)_30px] gap-1">
+              <ul className="text-slate-100 hidden text-center  break-all  md:grid grid-cols-[30px_repeat(6,1fr)_30px] gap-1">
                 <li style={{ fontWeight: 500 }} className=" bg-sky-800">
                   n
                 </li>
@@ -308,14 +308,14 @@ const Form6 = ({ getData, setter, i, dataDB }) => {
                 }
                 className="flex flex-row justify-center mt-2"
               >
-                <div className="rounded-sm p-1 w-80 bg-[#0979af] flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
+                <div className="text-slate-100 rounded-sm p-1 w-80 bg-[#0979af] flex flex-row justify-center gap-1 items-center  cursor-pointer hover:scale-105 duration-150 ease-in-out">
                   <h1>Agregar</h1>
                   <img className="h-8" src={addIcon} />
                 </div>
               </div>
             </section>
-            <section className="w-full flex flex-col">
-              <div className="w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
+            <section className="w-full flex flex-col font-medium">
+              <div className=" w-full p-1 gap-1 flex flex-row justify-center  rounded-md items-center">
                 <label className="w-[min(640px,85%)]" htmlFor="activos">
                   ¿Está en la capacidad de crear un área de medios de pago?
                 </label>

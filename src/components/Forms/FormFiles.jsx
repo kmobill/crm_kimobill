@@ -1,99 +1,234 @@
 import React, { useEffect, useRef, useState } from "react";
-import simpleAlert from "../../utils/Alerts";
+import simpleAlert, { confirmAlertCallback } from "../../utils/Alerts";
 import Modal from "../Modal/Modal";
 import document2 from "../../assets/icons/document2.png";
-import { sendFiles, getFilesNames } from "../../services/fileMethods";
+import {
+  sendFiles,
+  getFilesNames,
+  deleteFiles,
+} from "../../services/fileMethods";
 const FormFiles = ({ callbackfiles, setter, dataDB }) => {
+  const tokenUser = sessionStorage.getItem("token");
   const formFile = useRef(null);
   const [filesSeps, setfilesSeps] = useState([]);
   const [filesMC, setfilesMC] = useState([]);
-  const [filesKM, setfilesKM] = useState([]);
+  const [filesKMB, setfilesKMB] = useState([]);
+  const [filesDB, setfilesDB] = useState([]);
 
-  function handleSavefiles(files, folder) {
+  function handlePromisesFiles(promises = []) {
+    Promise.all(promises)
+      .then((values) => {
+        console.log(values);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function handleUploadFiles(files, folder) {
     const token = sessionStorage.getItem("token");
     const data = new FormData();
     Object.keys(files).forEach((key) => {
       data.append(files.item(key).name, files.item(key));
     });
-    sendFiles(token, data, folder);
-  }
-
-  const createViewFilesUpload = () => {
-    getFilesNames(sessionStorage.getItem("token")).then((files) => {
-      if (files.data) {
-        let content = `
-        <section class ='grid grid-cols-3 w-full'>`;
-        Object.keys(files.data).forEach((key) => {
-          content += `
-          <section  id='${key}-section'>
-            <h1 class = 'font-semibold text-center'>${key}</h1>
-            <div class = 'font-medium text-base flex flex-row items-center justify-center gap-2'>
-              <h1 class = 'w-48'>Archivo</h1>
-              <h1 class = 'w-16'>Estado</h1>
-            </div>
-           `;
-          files.data[key].forEach((file) => {
-            content += ` 
-            <div class = 'font-normal text-sm flex flex-row items-center justify-center gap-2'>
-             <h1 class = 'w-48'>${file}</h1>             
-             <h1 class = 'text-center w-16 text-emerald-500'>&#10004;</h1>
-            </div>`;
-          });
-          content += `
-          </section>`;
-        });
-        content += `
-        </section>`;
-        console.log(content);
-        document.getElementById("content-files-upload").innerHTML = content;
+    sendFiles(token, data, folder).then((res) => {
+      if (res.status === 200) {
+        simpleAlert("Se guardaron los archivos con exito", "success", "Exito");
+        getFilesFromDB();
+      } else {
+        simpleAlert("No se pudieron guardar los Archivos", "error", "Fallo");
       }
     });
-  };
-  const createViewFiles = () => {
-    const files2 = {
+  }
+  // function handleDeleteFilesNoUpload(files, folder, container, setContainer) {
+  //   const temp = { ...container };
+  //   if (temp[folder]) {
+  //     temp[folder] = temp[folder].filter((file) => !files.includes(file));
+  //     setContainer(temp);
+  //   }
+  // }
+  function handleDeleteFilesNoUpload(name, folder, container, setContainer) {
+    const dt = new DataTransfer();
+    const test = [...container].filter((file) => file.name !== name);
+    test.forEach((file) => dt.items.add(file));
+    setContainer(dt.files);
+  }
+  function handleDeleteFilesUploads(name, folder) {
+    console.log(name, folder);
+    console.log(typeof name, typeof folder);
+
+    confirmAlertCallback(
+      {
+        title: "Eliminar",
+        message: `¿Seguro que quiere eliminar: ${name} de la carpeta: ${folder}?`,
+        typeOfAlert: "warning",
+        button: "Eliminar",
+      },
+      {
+        title: "Eliminado",
+        message: `Se elimino el archivo: ${name} de la carpeta: ${folder} con exito`,
+        typeOfAlert: "success",
+        button: "Ok",
+      },
+      {
+        title: "Error",
+        message: `No se pudo eliminar el archivo: ${name} de la carpeta: ${folder}`,
+        typeOfAlert: "error",
+        button: "Ok",
+      },
+      deleteFiles,
+      [tokenUser, name, folder],
+      getFilesFromDB
+    )
+
+    // deleteFiles(tokenUser, name, folder).then((res) => {
+    //   if (res.status === 200) {
+    //     simpleAlert("Se elimino el archivo con exito", "success", "Exito");
+    //     getFilesFromDB();
+    //   } else {
+    //     simpleAlert("No se pudo eliminar el Archivo", "error", "Fallo");
+    //   }
+    // });
+  }
+  function CreateViewFiles() {
+    function selectContainer(name) {
+      switch (name) {
+        case "SEPS":
+          return filesSeps;
+        case "MC":
+          return filesMC;
+        case "KMB":
+          return filesKMB;
+        default:
+          return null;
+      }
+    }
+    function selectSetContainer(name) {
+      switch (name) {
+        case "SEPS":
+          return setfilesSeps;
+        case "MC":
+          return setfilesMC;
+        case "KMB":
+          return setfilesKMB;
+        default:
+          return null;
+      }
+    }
+    console.log(filesSeps);
+    console.log(filesMC);
+    console.log(filesKMB);
+    const newFiles = {
       SEPS: [...filesSeps],
       MC: [...filesMC],
-      KMB: [...filesKM],
+      KMB: [...filesKMB],
     };
-    let content = "";
-    Object.keys(files2).forEach((key) => {
-      content += `<section>
-      <h1>${key}</h1>
-      `;
-      console.log(files2[key]);
-      files2[key].forEach((file) => {
-        content += `
-        <div>
-          <h1>Nombre: ${file.name}</h1>
-          <h1>Peso: ${file.size / 1024 / 1000}</h1>
-          <h1>Tipo: ${file.type}</h1>
-          <h1>Ultima modificación ${file.lastModifiedDate}</h1>
-        </div>
-      `;
-      });
-      content += "</section>";
-    });
-    // files.forEach((file) => {
-    //   content += `
-    //   <div>
-    //     <h1>Nombre: ${file.name}</h1>
-    //     <h1>Peso: ${file.size / 1024 / 1000}</h1>
-    //     <h1>Tipo: ${file.type}</h1>
-    //     <h1>Ultima modificación ${file.lastModifiedDate}</h1>
-    //   </div>
-    //   `;
-    // });
-    document.getElementById("content-modal").innerHTML = content;
-  };
-  const handlePreview = () => {};
-  useEffect(() => {
-    console.log(
-      "______________________________cambio en files________________________________"
+    console.log(newFiles);
+    return (
+      <section className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] w-full gap-4 ">
+        {Object.keys(newFiles).map((key, i) => {
+          console.log(i);
+          return (
+            <section
+              key={i}
+              className="p-[0.75rem_0.5rem_0.75rem_0.7rem] bg-gradient-to-l from-sky-600 to-sky-500 text-slate-100 rounded-md"
+            >
+              <h1 className="font-semibold text-center">{key}</h1>
+              <div className="font-medium text-base grid grid-cols-[2fr_1fr_1fr] justify-center gap-2">
+                <h1 className="text-left">Archivo</h1>
+                <h1 className="text-center">Estado</h1>
+                <h1 className="text-center">Eliminar</h1>
+              </div>
+              {console.log(filesDB)}
+              {console.log(key)}
+              {console.log(filesDB[key])}
+              {filesDB[key]?.map((file, i) => {
+                console.log(file);
+                return (
+                  <div
+                    key={i}
+                    className="font-normal text-sm grid grid-cols-[2fr_1fr_1fr] justify-center gap-2"
+                  >
+                    <h1 className="cursor-pointer hover:scale-105 duration-300 hover:text-sky-400 ">
+                      {file}
+                    </h1>
+                    <h1 className="text-center font-semibold text-base text-emerald-500">
+                      &#10004;
+                    </h1>
+                    <h1
+                      onClick={() => handleDeleteFilesUploads(file, key)}
+                      className="cursor-pointer hover:text-rose-300  text-center font-semibold text-base text-rose-500"
+                    >
+                      &#10540;
+                    </h1>
+                  </div>
+                );
+              })}
+              {newFiles[key]?.map((file, i) => {
+                console.log(file);
+                return (
+                  <div
+                    key={i}
+                    className="font-normal text-sm grid grid-cols-[2fr_1fr_1fr] justify-center gap-2"
+                  >
+                    <h1 className="cursor-pointer hover:scale-105 duration-300 hover:text-sky-400 ">
+                      {file.name}
+                    </h1>
+                    <h1 className="text-center font-semibold text-base text-amber-500">
+                      &#10004;
+                    </h1>
+                    <h1
+                      onClick={() =>
+                        handleDeleteFilesNoUpload(
+                          file.name,
+                          key,
+                          selectContainer(key),
+                          selectSetContainer(key)
+                        )
+                      }
+                      className="cursor-pointer hover:text-rose-300  text-center font-semibold text-base text-rose-500"
+                    >
+                      &#10540;
+                    </h1>
+                  </div>
+                );
+              })}
+            </section>
+          );
+        })}
+      </section>
     );
-    createViewFiles();
-  }, [filesKM, filesMC, filesSeps]);
+  }
+  function clearInputs() {
+    setfilesSeps([]);
+    setfilesMC([]);
+    setfilesKMB([]);
+    formFile.current.reset();
+  }
+  function getFilesFromDB() {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      getFilesNames(token)
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          } else {
+            alert("Error al obtener los archivos");
+          }
+        })
+        .then((files) => {
+          if (files && files.data) {
+            setfilesDB(files.data);
+          }
+        });
+    }
+  }
 
-  useEffect(() => console.log({ filesKM }), [filesKM]);
+  useEffect(() => {
+    getFilesFromDB();
+  }, []);
+
+  useEffect(() => console.log({ filesKMB }), [filesKMB]);
   useEffect(() => console.log({ filesMC }), [filesMC]);
   useEffect(() => console.log({ filesSeps }), [filesSeps]);
 
@@ -107,35 +242,33 @@ const FormFiles = ({ callbackfiles, setter, dataDB }) => {
           ref={formFile}
           className="self-center w-full md:w-3/4 text-slate-400 flex flex-col gap-7"
         >
-          <div className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+          <label
+            htmlFor="inputSEPS"
+            className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)] cursor-pointer duration-200 hover:scale-[1.02] ease-in-out"
+          >
             <h1>Documentos adjuntos SEPS</h1>
-            <label
-              htmlFor="inputSEPS"
-              className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out"
-            >
+            <label className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out">
               <img src={document2} className="w-11" />
               <input
                 className="hidden"
                 id="inputSEPS"
                 type="file"
                 name="datatest"
-                // onChange={(e) => handleSaveFiles(e.target.files, setfilesSeps)}
                 onChange={(e) => {
                   setfilesSeps(e.target.files);
                 }}
-                // accept="image/png, image/jpeg"
                 required
                 multiple
               />
             </label>
-          </div>
+          </label>
 
-          <div className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+          <label
+            htmlFor="inputMC"
+            className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)] cursor-pointer duration-200 hover:scale-[1.02] ease-in-out"
+          >
             <h1>Documentos adjuntos Master Card</h1>
-            <label
-              htmlFor="inputMC"
-              className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out"
-            >
+            <label className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out">
               <img src={document2} className="w-11" />
               <input
                 className="hidden"
@@ -149,13 +282,13 @@ const FormFiles = ({ callbackfiles, setter, dataDB }) => {
                 multiple
               />
             </label>
-          </div>
-          <div className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+          </label>
+          <label
+            htmlFor="inputKM"
+            className="w-full grid grid-cols-[3fr_1fr] sm:grid-cols-[5fr_1fr] justify-center items-center bg-gradient-to-r from-sky-600 to-sky-500 text-slate-100 p-1 sm:p-[5px_20px] rounded-[4px] shadow-[0_15px_25px_rgba(0,0,0,0.6)] cursor-pointer duration-200 hover:scale-[1.02] ease-in-out"
+          >
             <h1>Documentos adjuntos Kimobill</h1>
-            <label
-              htmlFor="inputKM"
-              className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out"
-            >
+            <label className="flex justify-center items-center cursor-pointer duration-150 hover:scale-105 ease-in-out">
               <img src={document2} className="w-11" />
               <input
                 className="hidden"
@@ -163,39 +296,43 @@ const FormFiles = ({ callbackfiles, setter, dataDB }) => {
                 type="file"
                 multiple
                 onChange={(e) => {
-                  setfilesKM(e.target.files);
+                  setfilesKMB(e.target.files);
                 }}
                 // accept="image/png, image/jpeg"
                 required
               />
             </label>
-          </div>
+          </label>
         </form>
-        <div className=" w-[350px] lg:w-3/4 grid lg:grid-cols-[repeat(3,minmax(210px,1fr))] text-base py-5 gap-4 self-center text-slate-100">
+        <div className=" w-[350px] lg:w-3/4 grid lg:grid-cols-[repeat(2,minmax(210px,1fr))] text-base py-5 gap-4 self-center text-slate-100">
           <button
             className="bg-[#0066cb] h-11 rounded-md hover:scale-105 ease-in-out duration-150"
             onClick={() => {
-              handleSavefiles(filesSeps, "SEPS");
-              handleSavefiles(filesKM, "KMB");
-              handleSavefiles(filesMC, "MC");
+              // handlePromisesFiles([
+              //   handleUploadFiles(filesSeps, "SEPS"),
+              //   handleUploadFiles(filesMC, "MC"),
+              //   handleUploadFiles(filesKMB, "KM"),
+              // ]);
+              if (filesSeps.length > 0) {
+                handleUploadFiles(filesSeps, "SEPS");
+              }
+              if (filesMC.length > 0) {
+                handleUploadFiles(filesMC, "MC");
+              }
+              if (filesKMB.length > 0) {
+                handleUploadFiles(filesKMB, "KMB");
+              }
+              clearInputs();
             }}
           >
             Guardar esta Sección
           </button>
-          <button className="bg-[#0066cb] h-11 rounded-md hover:scale-105 ease-in-out duration-150">
-            Archivos cargados
-          </button>
-          <div onClick={() => createViewFilesUpload()}>
-            <Modal buttonText="archivos cargados hasta el momento">
-              <div className="w-full" id="content-files-upload">test</div>
-            </Modal>
-          </div>
-          <Modal buttonText="Vista Previa" parentFunction={handlePreview}>
-            <div
-              id="content-modal"
-              className="w-[90%] m-auto flex flex-row gap-5"
-            ></div>
+          {/* <div onClick={() => CreateViewFilesUpload()}> */}
+          <Modal buttonText="Archivos cargados">
+            {/* <div className="w-full" id="content-files-upload"></div> */}
+            <CreateViewFiles />
           </Modal>
+          {/* </div> */}
         </div>
       </section>
     </div>
